@@ -12,4 +12,11 @@
 
   ``` bash
     source env.sh
+    pip install -r requirements.txt
   ```
+
+- start the server
+
+ ``` bash
+    flask run --debugger
+ ```
