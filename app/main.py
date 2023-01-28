@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from .sms import send_sms
 import os
 
 
@@ -33,6 +34,7 @@ def ussd():
         accountNumber = "ACC1001"
         # This is a terminal request. Note how we start the response with END
         response = "END Your account number is " + accountNumber
+        send_sms(phone_number, "Hello, your account number is " + accountNumber)
 
     else:
         response = "END Invalid choice"

@@ -1,7 +1,9 @@
 # ATHackathon
 
+## Linux
+
 - create env.sh file
-- add the following values:
+- add the following variables:
 
   ``` text
   export API_KEY="your api key"
@@ -11,12 +13,38 @@
   ```
 
   ``` bash
-    source env.sh
-    pip install -r requirements.txt
+  source env.sh
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install -r requirements.txt
   ```
 
 - start the server
 
  ``` bash
-    flask run --debugger
+    flask run
  ```
+
+## Windows
+
+- create .env file in the root directory
+- add the following variables:
+
+  ``` text
+  API_KEY=your-secret-api-key
+  USERNAME=sandbox
+  URL=https://api.sandbox.africastalking.com/version1/messaging
+  SHORT_CODE=7633
+  ```
+
+  ``` shell
+  python3 -m venv venv
+  venv\Scripts\activate
+  pip install -r requiremnets.txt
+  ```
+
+- start server
+
+  ``` shell
+  flask run
+  ```

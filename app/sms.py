@@ -1,19 +1,19 @@
 import os
 from urllib.parse import urlencode
+from .settings import API_KEY, USERNAME, URL, SHORT_CODE
 import requests
 
 
 def send_sms(phone: str, message: str):
-    url = os.environ.get(
-        'URL', 'https://api.sandbox.africastalking.com/version1/messaging')
-    api_key = os.environ.get('API_KEY', '')
-    user_name = os.environ.get('USERNAME', 'sandbox')
+    url = URL
+    api_key = API_KEY
+    user_name = USERNAME
 
     data = urlencode({
         "username": user_name,
         "to": phone,
         "message": message,
-        "from": os.environ.get('SHORT_CODE', '7633'),
+        "from": SHORT_CODE
     })
 
     headers = {
