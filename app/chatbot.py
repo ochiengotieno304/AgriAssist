@@ -1,8 +1,7 @@
-import os
 import openai
+from .settings import OPENAI_API_KEY
 
-openai.api_key = os.getenv(
-    "OPENAI_API_KEY", "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")
+openai.api_key = OPENAI_API_KEY
 completion = openai.Completion()
 
 
