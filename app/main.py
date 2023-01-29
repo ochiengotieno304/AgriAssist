@@ -1,13 +1,25 @@
 from flask import Blueprint, request
 from .sms import send_sms
-import os
+from .models import User
+from . import db
 
 
 main = Blueprint('main', __name__)
 
-@main.route('/')
-def index():
-    return("Hello World")
+
+def register_user(phone: str, name: str):
+    new_user = User(name=name, phone=phone)
+    db.session.add(new_user)
+    db.session.commit()
+
+
+def all_users():
+    return User.query.all()
+
+
+def find_user(phone: str):
+    if User.query.filter_by(phone=phone).count() > 0:
+        return True
 
 
 @main.route('/ussd', methods=['POST'])
@@ -19,10 +31,12 @@ def ussd():
     text = request.values.get("text", "default")
 
     if text == '':
-        # This is the first request. Note how we start the response with CON
-        response = "CON What would you want to check \n"
-        response += "1. Register \n"
-        response += "2. My Phone"
+        if find_user(phone_number):
+            response = 'END Hello, Welcome to ..'
+        else:
+            response = "CON What would you want to check \n"
+            response += "1. Register \n"
+            response += "2. My Phone"
 
     elif text == '1':
         response = "CON Enter full name"
@@ -34,7 +48,12 @@ def ussd():
     else:
         arr = text.split("*")
         if len(arr) > 1:
-            response = "END Your full name" + arr[1]
+            try:
+                register_user(phone_number, arr[1])
+            except Exception as e:
+                response = f"END An error occured try again later \n " + str(e)
+            else:
+                response = f"END Dear {arr[1]} you have been successfully registerd to the service"
 
     # Send the response back to the API
     return response

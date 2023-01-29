@@ -8,7 +8,7 @@ def create_app():
     app = Flask(__name__)
 
     app.config.from_pyfile('settings.py')
-    app.config["DEBUG"] = True
+    app.config["FLASK_DEBUG"] = True
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
