@@ -25,7 +25,7 @@ def ussd():
 
     elif text == '2':
         response = "END Your Phone " + phone_number
-        send_sms("hello", phone_number)
+        send_sms(phone_number, "hello")
 
     else:
         arr = text.split("*")
@@ -34,9 +34,3 @@ def ussd():
 
     # Send the response back to the API
     return response
-
-
-# print('URL' in os.environ)
-# print('API_KEY' in os.environ)
-# print('USERNAME' in os.environ)
-# print('SHORT_CODE' in os.environ)
