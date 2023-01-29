@@ -1,34 +1,17 @@
-import os
-from urllib.parse import urlencode
-from .settings import API_KEY, USERNAME, URL, SHORT_CODE
-import requests
+import africastalking
+from os import getenv
+from .settings import USERNAME, API_KEY
 
-
-def send_sms(phone: str, message: str):
-    url = URL
+def send_sms(message: str, phone: str):
+    username = USERNAME
     api_key = API_KEY
-    user_name = USERNAME
+    africastalking.initialize(username, api_key)
 
-    data = urlencode({
-        "username": user_name,
-        "to": phone,
-        "message": message,
-        "from": SHORT_CODE
-    })
+    sms = africastalking.SMS
 
-    headers = {
-        "Accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-        "apikey": api_key,
-    }
+    def on_finish(error, response):
+        if error is not None:
+            raise error
+        print(response)
 
-    res = requests.post(url, data=data, headers=headers)
-    if res.status_code != 201:
-        print(f"Error sending SMS: {res.text}")
-        return False
-
-    print("SMS sent successfully")
-    return True
-
-
-send_sms("+254777287562", "hello")
+    sms.send(message, [phone], callback=on_finish)
