@@ -21,6 +21,10 @@ def find_user(phone: str):
     if User.query.filter_by(phone=phone).count() > 0:
         return True
 
+@main.route('/')
+def index():
+    return ('Hello World')
+
 
 @main.route('/ussd', methods=['POST'])
 def ussd():
@@ -48,12 +52,23 @@ def ussd():
     else:
         arr = text.split("*")
         if len(arr) > 1:
+            name = arr[1]
+            message = f'''
+                Dear {name} you have been successfully registerd to our service.
+                Recieve advice on crop switching
+                Recieve info on subsidies, loans, and other support services
+                Connect with buyers, wholesalers and retailers for your products through our USSD service
+
+
+                Dial *384*7633# for more info
+            '''
             try:
                 register_user(phone_number, arr[1])
             except Exception as e:
                 response = f"END An error occured try again later \n " + str(e)
             else:
-                response = f"END Dear {arr[1]} you have been successfully registerd to the service"
+                response = f"END Dear {name} you have been successfully registerd to the service"
+                send_sms(phone_number, message)
 
     # Send the response back to the API
     return response
