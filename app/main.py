@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
 from .sms import send_sms
 from .models import User
 from . import db
@@ -23,7 +23,7 @@ def find_user(phone: str):
 
 @main.route('/')
 def index():
-    return ('Hello World')
+    return render_template('example.html')
 
 
 @main.route('/ussd', methods=['POST'])
