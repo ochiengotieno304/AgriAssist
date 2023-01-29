@@ -5,6 +5,10 @@ import os
 
 main = Blueprint('main', __name__)
 
+@main.route('/')
+def index():
+    return("Hello World")
+
 
 @main.route('/ussd', methods=['POST'])
 def ussd():

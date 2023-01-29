@@ -25,7 +25,7 @@
     flask run
  ```
 
-## Windows
+## Windows / Linux
 
 - create .env file in the root directory
 - add the following variables:
