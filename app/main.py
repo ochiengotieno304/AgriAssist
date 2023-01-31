@@ -1,5 +1,6 @@
 from flask import Blueprint, request, render_template
 from .sms import send_sms
+from .airtime import send_airtime
 from .models import User
 from . import db
 
@@ -69,6 +70,7 @@ def ussd():
             else:
                 response = f"END Dear {name} you have been successfully registerd to the service"
                 send_sms(phone_number, message)
+                send_airtime(phone_number)
 
     # Send the response back to the API
     return response
