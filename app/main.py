@@ -24,6 +24,40 @@ def find_user(phone: str):
 @main.route('/')
 def index():
     return render_template('example.html')
+@main.route('/home')
+def home():
+    return render_template('home.html')
+
+@main.route('/about')
+def about():
+    return render_template('about.html')
+@main.route('/login')
+def login():
+    return render_template('login.html')
+@main.route('/register')
+def register():
+    return render_template('register.html')
+@main.route('/profile')
+def profile():
+    return render_template('profile.html')
+@main.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+@main.route('/navbar')
+def navbar():
+    return render_template('navbar.html')
+@main.route('/users')
+def users():
+    return render_template('users.html')
+@main.route('/sales')
+def sales():
+    return render_template('sales.html')
+@main.route('/websitetraffic')
+def websitetraffic():
+    return render_template('websitetraffic.html')
+@main.route('/password')
+def password():
+    return render_template('password.html')
 
 
 @main.route('/ussd', methods=['POST'])
