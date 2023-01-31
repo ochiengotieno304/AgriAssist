@@ -25,6 +25,10 @@ def find_user(phone: str):
 def index():
     return render_template('example.html')
 
+@main.route('/voice', methods=['POST'])
+def voice():
+    pass
+
 
 @main.route('/ussd', methods=['POST'])
 def ussd():
