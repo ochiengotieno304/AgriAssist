@@ -9,7 +9,7 @@ def voice(from_phone: str, to_phone: str):
         "username": os.getenv('USERNAME'),
         "to": to_phone,
         "from": from_phone,
-        "message": "hello"
+        # "message": "hello"
     })
 
     headers = {
@@ -27,4 +27,5 @@ def voice(from_phone: str, to_phone: str):
     return True
 
 
+# voice("+254777888999", "+254777287562")
 voice("+254777287562", "+254777888999")
