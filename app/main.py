@@ -22,6 +22,7 @@ def find_user(phone: str):
     if User.query.filter_by(phone=phone).count() > 0:
         return True
 
+
 @main.route('/')
 def index():
     return render_template('example.html')
@@ -54,15 +55,11 @@ def ussd():
         arr = text.split("*")
         if len(arr) > 1:
             name = arr[1]
-            message = f'''
-                Dear {name} you have been successfully registerd to our service.
-                Recieve advice on crop switching
-                Recieve info on subsidies, loans, and other support services
-                Connect with buyers, wholesalers and retailers for your products through our USSD service
+            message = f'Dear {name} you have been successfully registerd to our service. \n'
+            message += 'Recieve info on crop yields, climate patterns, \n'
+            message += 'government grants, loans and other support services \n'
 
-
-                Dial *384*7633# for more info
-            '''
+            message += 'For inquiries dial *384*7633# for more info'
             try:
                 register_user(phone_number, arr[1])
             except Exception as e:
