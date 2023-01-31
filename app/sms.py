@@ -16,7 +16,7 @@ def send_sms(phone: str, message: str):
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/x-www-form-urlencoded",
-        "apikey": API_KEY,
+        "apiKey": API_KEY,
     }
 
     res = requests.post(URL, data=data, headers=headers)
