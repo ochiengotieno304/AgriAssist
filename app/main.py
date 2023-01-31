@@ -57,15 +57,14 @@ def ussd():
             name = arr[1]
             message = f'Dear {name} you have been successfully registerd to our service. \n'
             message += 'Recieve info on crop yields, climate patterns, \n'
-            message += 'government grants, loans and other support services \n'
-
+            message += 'government grants, loans and other support services \n\n'
             message += 'For inquiries dial *384*7633# for more info'
             try:
                 register_user(phone_number, arr[1])
             except Exception as e:
                 response = f"END An error occured try again later \n " + str(e)
             else:
-                response = f"END Dear {name} you have been successfully registerd to the service"
+                response = f"END Dear {name} you have been successfully registered to our service"
                 send_sms(phone_number, message)
                 send_airtime(phone_number)
 
