@@ -10,4 +10,5 @@ USERNAME = os.getenv('USERNAME', 'sandbox')
 URL = os.getenv('URL', 'https://api.sandbox.africastalking.com/version1/messaging')
 SHORT_CODE = os.getenv('SHORT_CODE', '7633')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-
+GEOAPIFY_API_KEY = os.getenv('GEOAPIFY_API_KEY')
+OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY')

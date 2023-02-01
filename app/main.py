@@ -52,21 +52,7 @@ def voice():
     return response
 
 
-# def registered_options(phone_number, text):
-#     if find_user(phone_number):
-#         response = f'CON Hello {user(phone_number)}, welcome ... \n'
-#         response += "1. Weather information \n"
-#         response += "2. Crop information \n"
-#         response += "3. Livestock information"
-#         if text == '1':
-#             response += "1. Today (Hourly) \n"
-#             response += "2. 7-day weather \n"
-#             response += "3. 30-day weather"
-
-#     else:
-#         response = "CON What would you want to check \n"
-#         response += "1. Register \n"
-#         response += "2. My Phone"
+# TODO seperate menus
 
 @main.route('/ussd', methods=['POST'])
 def ussd():
