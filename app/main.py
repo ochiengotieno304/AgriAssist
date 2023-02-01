@@ -1,5 +1,6 @@
 from flask import Blueprint, request, render_template
 from .sms import send_sms
+from .airtime import send_airtime
 from .models import User
 from . import db
 
@@ -21,9 +22,29 @@ def find_user(phone: str):
     if User.query.filter_by(phone=phone).count() > 0:
         return True
 
+
 @main.route('/')
 def index():
     return render_template('index.html')
+
+
+@main.route('/voice', methods=['POST'])
+def voice():
+    session_id = request.values.get('sessionID', None)
+    is_active = request.values.get('isActive', None)
+
+    if is_active == 1:
+        response = '<?xml version="1.0" encoding="UTF-8"?>'
+        response += '<Response>'
+        response += '<Say>Please listen to our awesome record</Say>'
+        response += '</Response>'
+
+    else:
+        duration = request.values.get('durationInSeconds')
+        currency_code = request.values.get('currencyCode')
+        amount = request.values.get('amount')
+
+    return response
 
 
 @main.route('/ussd', methods=['POST'])
@@ -53,22 +74,18 @@ def ussd():
         arr = text.split("*")
         if len(arr) > 1:
             name = arr[1]
-            message = f'''
-                Dear {name} you have been successfully registerd to our service.
-                Recieve advice on crop switching
-                Recieve info on subsidies, loans, and other support services
-                Connect with buyers, wholesalers and retailers for your products through our USSD service
-
-
-                Dial *384*7633# for more info
-            '''
+            message = f'Dear {name} you have been successfully registerd to our service. \n'
+            message += 'Recieve info on crop yields, climate patterns, \n'
+            message += 'government grants, loans and other support services \n\n'
+            message += 'For inquiries dial *384*7633# for more info'
             try:
                 register_user(phone_number, arr[1])
             except Exception as e:
                 response = f"END An error occured try again later \n " + str(e)
             else:
-                response = f"END Dear {name} you have been successfully registerd to the service"
+                response = f"END Dear {name} you have been successfully registered to our service"
                 send_sms(phone_number, message)
+                send_airtime(phone_number)
 
     # Send the response back to the API
     return response
