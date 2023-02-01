@@ -21,6 +21,7 @@ def find_user(phone: str):
     if User.query.filter_by(phone=phone).count() > 0:
         return True
 
+
 @main.route('/')
 def index():
     return render_template('example.html')
@@ -53,6 +54,7 @@ def ussd():
         arr = text.split("*")
         if len(arr) > 1:
             name = arr[1]
+            response = "CON Enter Farm Location (Constituency)"
             message = f'''
                 Dear {name} you have been successfully registerd to our service.
                 Recieve advice on crop switching

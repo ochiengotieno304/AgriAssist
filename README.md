@@ -25,7 +25,7 @@
     flask run
  ```
 
-## Windows / Linux
+## Windows / Linux (Recommended)
 
 - create .env file in the root directory
 - add the following variables:
@@ -47,4 +47,10 @@
 
   ``` shell
   flask run
+  ```
+
+  - start server in debug mode (recommended)
+
+  ``` shell
+  flask --debug run
   ```
