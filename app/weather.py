@@ -10,6 +10,9 @@ def geocode(location: str):
     parsed = response.json()
     lon = parsed['results'][0]['lon']
     lat = parsed['results'][0]['lat']
+    lon = float(f'{lon:.5f}')
+    lat = float(f'{lat:.5f}')
+
     return [lat, lon]
 
 def weather(location: str):
