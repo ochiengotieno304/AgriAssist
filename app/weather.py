@@ -8,7 +8,6 @@ def geocode(location: str):
 
     response = requests.get(url)
     parsed = response.json()
-    parsed['results']
     lon = parsed['results'][0]['lon']
     lat = parsed['results'][0]['lat']
     return [lat, lon]
