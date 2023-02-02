@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template
 from .sms import send_sms
 from .airtime import send_airtime
+from .weather import weather
 from .models import User
 from . import db
 
@@ -26,6 +27,11 @@ def find_user(phone: str):
 def user(phone: str):
     user = User.query.filter_by(phone=phone).first()
     return user.name
+
+
+def user_location(phone: str):
+    user = User.query.filter_by(phone=phone).first()
+    return user.location
 
 
 @main.route('/')
@@ -101,6 +107,7 @@ def ussd():
     elif text == '1*1':
         if find_user(phone_number):
             response = "END Today Weather"
+            send_sms(weather(user_location(phone_number)))
         else:
             response = "END Please register"
 
@@ -115,8 +122,6 @@ def ussd():
             response = "END 30-day"
         else:
             response = "END Please register"
-
-
 
     else:
         arr = text.split("*")
