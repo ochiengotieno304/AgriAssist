@@ -1,7 +1,6 @@
 import requests
-import http.client
 
-from .settings import GEOAPIFY_API_KEY, OPENWEATHER_API_KEY
+from .settings import GEOAPIFY_API_KEY, RAPID_API_KEY
 
 
 def geocode(location: str):
@@ -12,14 +11,19 @@ def geocode(location: str):
     parsed['results']
     lon = parsed['results'][0]['lon']
     lat = parsed['results'][0]['lat']
-    return [lon, lat]
-
+    return [lat, lon]
 
 def weather(location: str):
     coordinates = geocode(location)
-    url = f"http://api.openweathermap.org/data/2.5/weather?lat={coordinates[1]}&lon={coordinates[0]}&appid={OPENWEATHER_API_KEY}&units=metric"
-    response = requests.get(url)
-    return response.json()
+    url = f"https://forecast9.p.rapidapi.com/rapidapi/forecast/{coordinates[0]}/{coordinates[1]}/hourly/"
+
+    headers = {
+        "X-RapidAPI-Key": RAPID_API_KEY,
+        "X-RapidAPI-Host": "forecast9.p.rapidapi.com"
+    }
+
+    response = requests.request("GET", url, headers=headers)
+
+    return response.text
 
 
-print(weather('lurambi'))
