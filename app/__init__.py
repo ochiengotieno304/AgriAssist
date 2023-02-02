@@ -19,7 +19,8 @@ def create_app():
     with app.app_context():
         db.create_all()
 
-    from .main import main as main_blueprint
-    app.register_blueprint(main_blueprint)
+    from .pages import page as page_blueprint
+    app.register_blueprint(page_blueprint)
+
 
     return app
