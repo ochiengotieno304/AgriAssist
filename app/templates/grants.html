@@ -20,8 +20,8 @@
                     General
                 </p>
                 <ul class="menu-list">
-                    <li><a class="has-background-primary has-text-white" href="/">Home</a></li>
-                    <li><a href="{{ url_for('page.grants') }}">Grant</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{{ url_for('page.grants') }}" class="has-background-primary has-text-white">Grant</a></li>
                     <li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
                     <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
 
@@ -59,7 +59,7 @@
                                     <tr>
                                         <td>Availability</td>
                                         <td>Category</td>
-                                        
+
                                     </tr>
                                     {% for grant in grants %}
                                     <tr>
@@ -83,37 +83,37 @@
         <div class="column is-3">
             <div class="card">
                 <div class="card-content">
-                  <div class="content">
-            <aside class="menu is-hidden-mobile">
-                <p class="menu-label">
-                    General
-                </p>
-                <div class="file is-centered is-boxed is-success has-name">
-                    <label class="file-label">
-                        <div class="control">
-                            <label>Availability</label>
-                            <input class="input" type="text" placeholder="Availability">
-                        </div>
-                        <br />
-                        <div class="control">
-                            <label>Category</label>
-                            <input class="input" type="text" placeholder="Category">
-                        </div>
-                        <br />
-                        <div class="field is-grouped is-grouped-centered">
-                            <p class="control">
-                                <a class="button is-primary is-link is-small" href="#">Update</a>
-
+                    <div class="content">
+                        <aside class="menu is-hidden-mobile">
+                            <p class="menu-label">
+                                General
                             </p>
+                            <div class="file is-centered is-boxed is-success has-name">
+                                <label class="file-label">
+                                    <div class="control">
+                                        <label>Availability</label>
+                                        <input class="input" type="text" placeholder="Availability">
+                                    </div>
+                                    <br />
+                                    <div class="control">
+                                        <label>Category</label>
+                                        <input class="input" type="text" placeholder="Category">
+                                    </div>
+                                    <br />
+                                    <div class="field is-grouped is-grouped-centered">
+                                        <p class="control">
+                                            <a class="button is-primary is-link is-small" href="#">Update</a>
 
-                        </div>
-                    </label>
+                                        </p>
+
+                                    </div>
+                                </label>
+                            </div>
+
+                        </aside>
+                    </div>
                 </div>
-
-            </aside>
-        </div>
-    </div>
-  </div>
+            </div>
         </div>
     </div>
 
