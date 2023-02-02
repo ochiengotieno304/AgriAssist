@@ -1,4 +1,13 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
 
 {% block content %}
 
@@ -16,12 +25,12 @@
 
     </aside>
   </div>
-  <div class="column is-9">
+  <div class="column is-6">
     <section class="hero is-primary welcome is-small">
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Home
+            User Details
           </h1>
 
         </div>
@@ -29,7 +38,7 @@
     </section>
 
 
-    <div class="is-6">
+    <div class="is-3">
       <div class="card events-card">
         <header class="card-header">
 
@@ -44,19 +53,16 @@
             <table class="table is-fullwidth is-striped">
               <tbody>
                 <tr>
-                  <td>Customer ID</td>
                   <td>Phone</td>
                   <td>Name</td>
                   <td>Action</td>
                 </tr>
-                {%for user in users%}
                 <tr>
-                  <td>{{user.id}}</td>
                   <td>{{user.phone}}</td>
                   <td>{{user.name}}</td>
-                  <td><a class="button is-link is-small" href="/user/{{user.id}}">View</a></td>
+                  <td><a class="button is-link is-small" href="/delete/{{user.id}}">Delete</a></td>
                 </tr>
-                {% endfor%}
+                
               </tbody>
             </table>
           </div>
@@ -65,7 +71,13 @@
     </div>
 
   </div>
+  <div class="column is-3">
+
+  </div>
 </div>
 
 
 {% endblock %}
+
+</body>
+</html>
