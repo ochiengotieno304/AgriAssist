@@ -9,9 +9,11 @@
         General
       </p>
       <ul class="menu-list">
-        <li><a class="has-background-primary has-text-white">Home</a></li>
-        <li><a href="{{ url_for('page.index') }}">Home</a></li>
-        <li><a href="{{ url_for('page.index') }}">Home</a></li>
+        <li><a class="has-background-primary has-text-white" href="/">Home</a></li>
+        <li><a href="{{ url_for('page.grants') }}">Grants</a></li>
+        <li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
+        <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
+
       </ul>
 
     </aside>
@@ -44,14 +46,14 @@
             <table class="table is-fullwidth is-striped">
               <tbody>
                 <tr>
-                  <td>Customer ID</td>
+                  <td>Location</td>
                   <td>Phone</td>
                   <td>Name</td>
                   <td>Action</td>
                 </tr>
                 {%for user in users%}
                 <tr>
-                  <td>{{user.id}}</td>
+                  <td>{{user.location}}</td>
                   <td>{{user.phone}}</td>
                   <td>{{user.name}}</td>
                   <td><a class="button is-link is-small" href="/user/{{user.id}}">View</a></td>
