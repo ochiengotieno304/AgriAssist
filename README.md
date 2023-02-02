@@ -40,7 +40,7 @@
   ``` shell
   python3 -m venv venv
   venv\Scripts\activate
-  pip install -r requiremnets.txt
+  pip install -r requirements.txt
   ```
 
 - start server

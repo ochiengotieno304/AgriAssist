@@ -10,8 +10,8 @@
       </p>
       <ul class="menu-list">
         <li><a class="has-background-primary has-text-white">Home</a></li>
-        <li><a href="{{ url_for('main.index') }}">Home</a></li>
-        <li><a href="{{ url_for('main.index') }}">Home</a></li>
+        <li><a href="{{ url_for('page.index') }}">Home</a></li>
+        <li><a href="{{ url_for('page.index') }}">Home</a></li>
       </ul>
 
     </aside>
@@ -47,14 +47,17 @@
                   <td>
                   <td>Customer ID</td>
                   <td>Name</td>
+                  <td>Phone</td>
                 </tr>
-
+{%for users in users%}
                 <tr>
                   <td width="5%">
-                  <td>ID00</td>
-                  <td>First Last</td>
+                  <td>{{user.id}}</td>
+                  <td>{{user.phone}}</td>
+                  <td>{{user.name}}</td>
                   <td><a class="button is-link is-small" href="#">View</a></td>
                 </tr>
+                {% endfor%}
               </tbody>
             </table>
           </div>
