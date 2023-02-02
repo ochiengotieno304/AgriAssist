@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+
+    <div class="columns">
+        <div class="column is-3">
+            <aside class="menu is-hidden-mobile">
+                <p class="menu-label">
+                    General
+                </p>
+                <ul class="menu-list">
+                    <li><a class="has-background-primary has-text-white" href="/">Home</a></li>
+                    <li><a href="{{ url_for('page.grants') }}">Grant</a></li>
+                    <li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
+                    <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
+
+                </ul>
+
+            </aside>
+        </div>
+        <div class="column is-6">
+            <section class="hero is-primary welcome is-small">
+                <div class="hero-body">
+                    <div class="">
+                        <h1 class="title">
+                            Subsidies
+                        </h1>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <div class="is-3">
+                <div class="card events-card">
+                    <header class="card-header">
+
+                        <a href="#" class="card-header-icon" aria-label="more options">
+                            <span class="icon">
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </header>
+                    <div class="card-table">
+                        <div class="content">
+                            <table class="table is-fullwidth is-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Availability</td>
+                                        <td>Category</td>
+                                        
+                                    </tr>
+                                    {% for subsidy in subsidies %}
+                                    <tr>
+
+                                        <td>{{subsidies.availability}}</td>
+                                        <td>{{subsidies.category}}</td>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+
+        <div class="column is-3">
+            <div class="card">
+                <div class="card-content">
+                  <div class="content">
+            <aside class="menu is-hidden-mobile">
+                <p class="menu-label">
+                    General
+                </p>
+                <div class="file is-centered is-boxed is-success has-name">
+                    <label class="file-label">
+                        <div class="control">
+                            <label>Availability</label>
+                            <input class="input" type="text" placeholder="Availability">
+                        </div>
+                        <br />
+                        <div class="control">
+                            <label>Category</label>
+                        </div>
+                        <br />
+                        <div class="field is-grouped is-grouped-centered">
+                            <p class="control">
+                                <a class="button is-primary is-link is-small" href="#">Update</a>
+
+                            </p>
+
+                        </div>
+                    </label>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+  </div>
+        </div>
+    </div>
+
+
+    {% endblock %}
+
+</body>
+
+</html>

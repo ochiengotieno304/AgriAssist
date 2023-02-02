@@ -20,9 +20,11 @@
                     General
                 </p>
                 <ul class="menu-list">
-                    <li><a class="has-background-primary has-text-white">Home</a></li>
-                    <li><a href="{{ url_for('page.index') }}">Home</a></li>
-                    <li><a href="{{ url_for('page.index') }}">Home</a></li>
+                    <li><a class="has-background-primary has-text-white" href="/">Home</a></li>
+                    <li><a href="{{ url_for('page.grants') }}">Grant</a></li>
+                    <li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
+                    <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
+
                 </ul>
 
             </aside>
@@ -32,7 +34,7 @@
                 <div class="hero-body">
                     <div class="">
                         <h1 class="title">
-                            User Details
+                            Specialists
                         </h1>
 
                     </div>
@@ -55,16 +57,17 @@
                             <table class="table is-fullwidth is-striped">
                                 <tbody>
                                     <tr>
-                                        <td>Phone</td>
                                         <td>Name</td>
+                                        <td>Phone</td>
                                         <td>Action</td>
+                                        
                                     </tr>
                                     <tr>
 
-                                        <td>{{user.phone}}</td>
-                                        <td>{{user.name}}</td>
-                                        <td><a class="button is-link is-small" href="/delete/{{user.id}}">Delete</a>
-                                        </td>
+                                        <td>{{specialists.name}}</td>
+                                        <td>{{specialists.phone}}</td>
+                                        <td><a class="button is-link is-small" href="/specialists/{{specialists.id}}">View</a></td>
+                                    </td>
                                     </tr>
 
 
@@ -75,53 +78,6 @@
                 </div>
             </div>
             <br />
-            <section class="hero is-primary welcome is-small">
-                <div class="hero-body">
-                    <div class="container">
-                        <h1 class="title">
-                            Session
-                        </h1>
-
-                    </div>
-                </div>
-            </section>
-
-
-            <div class="is-3">
-                <div class="card events-card">
-                    <header class="card-header">
-
-                        <a href="#" class="card-header-icon" aria-label="more options">
-                            <span class="icon">
-                                <i class="fa fa-angle-down" aria-hidden="true"></i>
-                            </span>
-                        </a>
-                    </header>
-                    <div class="card-table">
-                        <div class="content">
-                            <table class="table is-fullwidth is-striped">
-                                <tbody>
-
-                                    <tr>
-                                        <td>TimeDate</td>
-                                        <td>Specialist</td>
-                                        <td>Status</td>
-                                        <td>Action</td>
-                                    </tr>
-                                    <tr>
-                                        <td>{{user.timedate}}</td>
-                                        <td>{{user.specialist}}</td>
-                                        <td>{{user.status}}</td>
-                                        <td><a class="button is-primary is-link is-small"
-                                                href="/delete/{{user.id}}">Delete</a></td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="column is-3">
@@ -146,7 +102,7 @@
                         <br />
                         <div class="field is-grouped is-grouped-centered">
                             <p class="control">
-                                <a class="button is-primary is-link is-small" href="/update/{{user.id}}">Update</a>
+                                <a class="button is-primary is-link is-small" href="#">Update</a>
 
                             </p>
 
