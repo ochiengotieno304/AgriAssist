@@ -107,7 +107,7 @@ def ussd():
     elif text == '1*1':
         if find_user(phone_number):
             response = "END Today Weather"
-            send_sms(weather(user_location(phone_number)))
+            send_sms(phone_number, weather(user_location(phone_number)))
         else:
             response = "END Please register"
 
