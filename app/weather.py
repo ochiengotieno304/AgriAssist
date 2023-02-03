@@ -1,6 +1,6 @@
 import requests
 
-from .settings import GEOAPIFY_API_KEY, RAPID_API_KEY
+from .settings import GEOAPIFY_API_KEY, OPENWEATHER_API_KEY
 
 
 def geocode(location: str):
@@ -17,15 +17,12 @@ def geocode(location: str):
 
 def weather(location: str):
     coordinates = geocode(location)
-    url = f"https://forecast9.p.rapidapi.com/rapidapi/forecast/{coordinates[0]}/{coordinates[1]}/hourly/"
+    url = f"https://api.openweathermap.org/data/2.5/weather?lat={coordinates[0]}&lon={coordinates[1]}&appid={OPENWEATHER_API_KEY}&units=metric"
 
-    headers = {
-        "X-RapidAPI-Key": RAPID_API_KEY,
-        "X-RapidAPI-Host": "forecast9.p.rapidapi.com"
-    }
+    payload={}
+    headers = {}
 
-    response = requests.request("GET", url, headers=headers)
+    response = requests.request("GET", url, headers=headers, data=payload)
 
     return response.text
-
-
+    
