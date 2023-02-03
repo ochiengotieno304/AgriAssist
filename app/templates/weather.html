@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% extends "weather2.html" %}
+
+    {% block content %}
+
+    <div class="columns">
+        <div class="column is-3">
+            <aside class="menu is-hidden-mobile">
+                <img src="{{ url_for('static', filename='cloudy.png') }}" />
+
+
+            </aside>
+        </div>
+        <div class="column is-6">
+            <section class="hero is-primary welcome is-small">
+                <div class="hero-body">
+                    <div class="">
+                        <h1 class="title">
+                            weather records
+                        </h1>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <div class="is-3">
+                <div class="card events-card">
+                    <header class="card-header">
+
+                        <a href="#" class="card-header-icon" aria-label="more options">
+                            <span class="icon">
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                    </header>
+                    <div class="card-table">
+                        <div class="content">
+                            <tbody>
+                                <table>
+                                    <tr>
+                                        <th>Time</th>
+                                        
+                                        <th>Temp</th>
+                                        <th>Humidity</th>
+                                        <th>uvi</th>
+                                        
+                                        
+                                      </tr>
+                    
+                                </table>
+                            </tbody>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+
+    
+    </div>
+
+
+    {% endblock %}
+
+</body>
+
+</html>

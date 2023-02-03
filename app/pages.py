@@ -48,3 +48,7 @@ def subsidies():
 def specialists():
     specialists= Specialist.query.all()
     return render_template('specialists.html',specialists=specialists)
+
+@page.route('/weather')
+def weather():
+    return render_template('weather.html')
