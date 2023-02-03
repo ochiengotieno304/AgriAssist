@@ -1,6 +1,9 @@
 import requests
+from time import ctime
+from datetime import datetime
 
 from .settings import GEOAPIFY_API_KEY, OPENWEATHER_API_KEY
+
 
 
 def geocode(location: str):
@@ -20,6 +23,30 @@ def weather(location: str):
     payload = {}
     headers = {}
 
-    response = requests.request("GET", url_1, headers=headers, data=payload)
+    response = requests.request("GET", url, headers=headers, data=payload)
 
-    return response.text
+    return response.json()
+
+
+def hourly(location: str):
+    response = weather(location)
+    hours = response['hourly']
+    hourly_weather = "\tTime\t\tTemp\tHumidity\tUVI\n"
+    for i in hours:
+        date = datetime.fromtimestamp((i['dt'])).strftime("%Y-%m-%d %H:%M")
+        hourly_weather += f"{date}\t{i['temp']}\t{i['humidity']}\t\t{i['uvi']}\n"
+
+    return hourly_weather
+
+
+def seven_day(location: str):
+    response = weather(location)
+    hours = response['hourly']
+    hourly_weather = "\tTime\t\tTemp\tHumidity\tUVI\n"
+    for i in hours:
+        date = datetime.fromtimestamp((i['dt'])).strftime("%Y-%m-%d %H:%M")
+        hourly_weather += f"{date}\t{i['temp']}\t{i['humidity']}\t\t{i['uvi']}\n"
+
+    return hourly_weather
+
+
