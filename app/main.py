@@ -95,7 +95,10 @@ def ussd():
             response = "CON Enter your preferred crop \n"
             # TODO send session booking sms
         else:
-            response = "END We've sent an sms ..."
+            response = "END Register for our service to get updates on\n"
+            response += "weather and climate patterns"
+            response += "alerts on govt subsidies and loans"
+            response += "market info"
 
     elif text == '3':
         if find_user(phone_number):
