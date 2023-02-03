@@ -41,7 +41,7 @@ def hourly(location: str):
 
 def seven_day(location: str):
     response = weather(location)
-    hours = response['hourly']
+    hours = response['']
     hourly_weather = "\tTime\t\tTemp\tHumidity\tUVI\n"
     for i in hours:
         date = datetime.fromtimestamp((i['dt'])).strftime("%Y-%m-%d %H:%M")
