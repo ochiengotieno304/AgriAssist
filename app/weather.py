@@ -1,6 +1,9 @@
 import requests
+from time import ctime
+from datetime import datetime
 
-from .settings import GEOAPIFY_API_KEY, RAPID_API_KEY
+from .settings import GEOAPIFY_API_KEY, OPENWEATHER_API_KEY
+
 
 
 def geocode(location: str):
@@ -10,22 +13,40 @@ def geocode(location: str):
     parsed = response.json()
     lon = parsed['results'][0]['lon']
     lat = parsed['results'][0]['lat']
-    lon = float(f'{lon:.5f}')
-    lat = float(f'{lat:.5f}')
 
     return [lat, lon]
 
 def weather(location: str):
     coordinates = geocode(location)
-    url = f"https://forecast9.p.rapidapi.com/rapidapi/forecast/{coordinates[0]}/{coordinates[1]}/hourly/"
+    url = f"https://api.openweathermap.org/data/2.5/onecall?lat={coordinates[0]}&lon={coordinates[1]}&units=metric&appid={OPENWEATHER_API_KEY}"
 
-    headers = {
-        "X-RapidAPI-Key": RAPID_API_KEY,
-        "X-RapidAPI-Host": "forecast9.p.rapidapi.com"
-    }
+    payload = {}
+    headers = {}
 
-    response = requests.request("GET", url, headers=headers)
+    response = requests.request("GET", url, headers=headers, data=payload)
 
-    return response.text
+    return response.json()
+
+
+def hourly(location: str):
+    response = weather(location)
+    hours = response['hourly']
+    hourly_weather = "\tTime\t\tTemp\tHumidity\tUVI\n"
+    for i in hours:
+        date = datetime.fromtimestamp((i['dt'])).strftime("%Y-%m-%d %H:%M")
+        hourly_weather += f"{date}\t{i['temp']}\t{i['humidity']}\t\t{i['uvi']}\n"
+
+    return hourly_weather
+
+
+def seven_day(location: str):
+    response = weather(location)
+    hours = response['']
+    hourly_weather = "\tTime\t\tTemp\tHumidity\tUVI\n"
+    for i in hours:
+        date = datetime.fromtimestamp((i['dt'])).strftime("%Y-%m-%d %H:%M")
+        hourly_weather += f"{date}\t{i['temp']}\t{i['humidity']}\t\t{i['uvi']}\n"
+
+    return hourly_weather
 
 

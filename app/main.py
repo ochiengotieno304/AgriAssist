@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template
 from .sms import send_sms
 from .airtime import send_airtime
-from .weather import weather
+from .weather import weather, hourly
 from .models import User
 from . import db
 
@@ -95,7 +95,10 @@ def ussd():
             response = "CON Enter your preferred crop \n"
             # TODO send session booking sms
         else:
-            response = "END We've sent an sms ..."
+            response = "END Register for our service to get updates on\n"
+            response += "weather and climate patterns"
+            response += "alerts on govt subsidies and loans"
+            response += "market info"
 
     elif text == '3':
         if find_user(phone_number):
@@ -106,8 +109,8 @@ def ussd():
 
     elif text == '1*1':
         if find_user(phone_number):
-            response = "END Today Weather"
-            send_sms(phone_number, weather(user_location(phone_number)))
+            response = "END We've sent an sms with your request"
+            send_sms(phone_number, hourly(user_location(phone_number)))
         else:
             response = "END Please register"
 
