@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template
 from .sms import send_sms
 from .airtime import send_airtime
-from .weather import weather, hourly
+from .weather import weather, hourly, daily
 from .models import User
 from . import db
 
