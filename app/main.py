@@ -116,7 +116,9 @@ def ussd():
 
     elif text == '1*2':
         if find_user(phone_number):
-            response = "END 7-day"
+            response = "END We've sent an sms with your request"
+            send_sms(phone_number, daily(user_location(phone_number)))
+
         else:
             response = "END Please register"
 
