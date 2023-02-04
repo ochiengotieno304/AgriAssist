@@ -1,11 +1,7 @@
 import requests
 from time import ctime
 
-# from .settings import GEOAPIFY_API_KEY, OPENWEATHER_API_KEY
-
-
-GEOAPIFY_API_KEY = "79cbac9302a147fd96434ee878451b66"
-OPENWEATHER_API_KEY = "06bfff4eb1a8e650c9f42d07db5cabd4"
+from .settings import GEOAPIFY_API_KEY, OPENWEATHER_API_KEY
 
 
 def geocode(location: str):
@@ -17,6 +13,7 @@ def geocode(location: str):
     lat = parsed['results'][0]['lat']
 
     return [lat, lon]
+
 
 def weather(location: str):
     coordinates = geocode(location)
@@ -44,7 +41,6 @@ def hourly(location: str):
         hourly_weather += f"Temperature: {temp}\n"
         hourly_weather += f"Humidity: {humidity}\n"
         hourly_weather += f"UV Index: {uvi}\n\n"
-
 
     return hourly_weather
 
