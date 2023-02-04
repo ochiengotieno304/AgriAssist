@@ -58,7 +58,3 @@ def daily(location: str):
         daily_weather += f"{date}\t{i['temp']['day']}\t\t{i['humidity']}\t\t{i['uvi']}\n"
 
     return daily_weather
-
-
-
-hourly('kamukunji')
