@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for
 from .models import User,Grant,Specialist,Session,Subsidy
 
-from . import db 
+from . import db
 
 page = Blueprint('page', __name__)
 

@@ -1,8 +1,11 @@
 import requests
 from time import ctime
-from datetime import datetime
 
-from .settings import GEOAPIFY_API_KEY, OPENWEATHER_API_KEY
+# from .settings import GEOAPIFY_API_KEY, OPENWEATHER_API_KEY
+
+
+GEOAPIFY_API_KEY = "79cbac9302a147fd96434ee878451b66"
+OPENWEATHER_API_KEY = "06bfff4eb1a8e650c9f42d07db5cabd4"
 
 
 def geocode(location: str):
@@ -30,10 +33,18 @@ def weather(location: str):
 def hourly(location: str):
     response = weather(location)
     hours = response['hourly']
-    hourly_weather = "\tTime\t\tTemp\tHumidity\tUVI\n"
+    hourly_weather = "Today's Hourly Weather\n"
     for i in hours:
-        date = datetime.fromtimestamp((i['dt'])).strftime("%a %Y-%m-%d %H:%M")
-        hourly_weather += f"{date}\t{i['temp']}\t{i['humidity']}\t\t{i['uvi']}\n"
+        date = ctime(i['dt'])
+        humidity = i['humidity']
+        uvi = i['uvi']
+        temp = i['temp']
+
+        hourly_weather += f"Date: {date}\n"
+        hourly_weather += f"Temperature: {temp}\n"
+        hourly_weather += f"Humidity: {humidity}\n"
+        hourly_weather += f"UV Index: {uvi}\n\n"
+
 
     return hourly_weather
 
@@ -48,4 +59,6 @@ def daily(location: str):
 
     return daily_weather
 
-hourly('lugari')
+
+
+hourly('kamukunji')
