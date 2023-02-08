@@ -29,18 +29,21 @@ def weather(location: str):
 
 def hourly(location: str):
     response = weather(location)
-    hours = response['hourly']
-    hourly_weather = "Today's Hourly Weather\n"
-    for i in hours:
-        date = ctime(i['dt'])
-        humidity = i['humidity']
-        uvi = i['uvi']
-        temp = i['temp']
+    try:
+        hours = response['hourly']
+        hourly_weather = "Today's Hourly Weather\n"
+        for i in hours:
+            date = ctime(i['dt'])
+            humidity = i['humidity']
+            uvi = i['uvi']
+            temp = i['temp']
 
-        hourly_weather += f"Date: {date}\n"
-        hourly_weather += f"Temperature: {temp}\n"
-        hourly_weather += f"Humidity: {humidity}\n"
-        hourly_weather += f"UV Index: {uvi}\n\n"
+            hourly_weather += f"Date: {date}\n"
+            hourly_weather += f"Temperature: {temp}\n"
+            hourly_weather += f"Humidity: {humidity}\n"
+            hourly_weather += f"UV Index: {uvi}\n\n"
+    except Exception as e:
+        hourly_weather = "We are currently experiencing downtime try again later"
 
     return hourly_weather
 
