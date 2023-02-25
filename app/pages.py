@@ -1,5 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, url_for
 from .models import User,Grant,Specialist,Session,Subsidy
+from .utils import update_user
 
 from . import db
 
@@ -15,7 +16,7 @@ def index():
     users=all_users()
     return render_template('index.html',users=users)
 
-@page.route('/user/<id>')
+@page.route('/user/<id>', methods=['POST', 'GET'])
 def view_user(id):
     user = User.query.filter_by(id=id).first_or_404()
     return render_template('user.html',user=user)
@@ -27,12 +28,16 @@ def delete_user(id):
     db.session.commit()
     return redirect(url_for('page.index'))
 
-@page.route('/update/<id>')
+@page.route('/update/<id>', methods=['POST'])
 def update_user(id):
-    user = User.query.filter_by(id=id).first_or_404()
-    db.session.update(user)
-    db.session.commit()
-    return redirect(url_for('page.index'))
+    if request.method == 'POST':
+        user = User.query.filter_by(id=id).first_or_404()
+        user.name = request.form['name']
+        user.phone = request.form['phone']
+        user.location = request.form['location']
+        db.session.update()
+        db.session.commit()
+        return redirect(url_for('page.index'))
 
 @page.route('/grants')
 def grants():

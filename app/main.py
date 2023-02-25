@@ -43,17 +43,12 @@ def index():
 def voice():
     session_id = request.values.get('sessionID', None)
     is_active = request.values.get('isActive', None)
+    keypad_res = request.values.get('dtmfDigits', None)
 
-    if is_active == 1:
-        response = '<?xml version="1.0" encoding="UTF-8"?>'
-        response += '<Response>'
-        response += '<Say>Please listen to our awesome record</Say>'
-        response += '</Response>'
-
-    else:
-        duration = request.values.get('durationInSeconds')
-        currency_code = request.values.get('currencyCode')
-        amount = request.values.get('amount')
+    response = '<?xml version="1.0" encoding="UTF-8"?>'
+    response += '<Response>'
+    response += '<Say>Hello, welcome to AgriAssist.</Say>'
+    response += '</Response>'
 
     return response
 

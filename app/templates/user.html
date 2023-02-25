@@ -21,8 +21,8 @@
                 </p>
                 <ul class="menu-list">
                     <li><a class="has-background-primary has-text-white">Home</a></li>
-                    <li><a href="{{ url_for('page.index') }}">Home</a></li>
-                    <li><a href="{{ url_for('page.index') }}">Home</a></li>
+                    <!-- <li><a href="{{ url_for('page.index') }}">Home</a></li>
+                    <li><a href="{{ url_for('page.index') }}">Home</a></li> -->
                 </ul>
 
             </aside>
@@ -127,37 +127,44 @@
         <div class="column is-3">
             <div class="card">
                 <div class="card-content">
-                  <div class="content">
-            <aside class="menu is-hidden-mobile">
-                <p class="menu-label">
-                    General
-                </p>
-                <div class="file is-centered is-boxed is-success has-name">
-                    <label class="file-label">
-                        <div class="control">
-                            <label>Name</label>
-                            <input class="input" type="text" placeholder="Name">
-                        </div>
-                        <br />
-                        <div class="control">
-                            <label>Phone</label>
-                            <input class="input" type="text" placeholder="Phone">
-                        </div>
-                        <br />
-                        <div class="field is-grouped is-grouped-centered">
-                            <p class="control">
-                                <a class="button is-primary is-link is-small" href="/update/{{user.id}}">Update</a>
-
+                    <div class="content">
+                        <aside class="menu is-hidden-mobile">
+                            <p class="menu-label">
+                                General
                             </p>
+                            <div class="file is-centered is-boxed is-success has-name">
+                                <label class="file-label">
+                                    <form action="{{ url_for('page.update_user', id=user.id) }}" method="POST">
+                                        <div class="control">
+                                            <label>Name</label>
+                                            <input class="input" type="text" placeholder="Name" value="{{user.name}}">
+                                        </div>
+                                        <br />
+                                        <div class="control">
+                                            <label>Phone</label>
+                                            <input class="input" type="text" placeholder="Phone" value="{{user.phone}}">
+                                        </div>
+                                        <br>
+                                        <div class="control">
+                                            <label>Location</label>
+                                            <input class="input" type="text" placeholder="Phone"
+                                                value="{{user.location}}">
+                                        </div>
+                                        <br />
+                                        <div class="field is-grouped is-grouped-centered">
+                                            <p class="control">
+                                                <a class="button is-primary is-link is-small"
+                                                    href="">Update</a>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </label>
+                            </div>
 
-                        </div>
-                    </label>
+                        </aside>
+                    </div>
                 </div>
-
-            </aside>
-        </div>
-    </div>
-  </div>
+            </div>
         </div>
     </div>
 
