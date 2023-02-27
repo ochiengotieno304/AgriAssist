@@ -4,7 +4,7 @@ from .settings import API_KEY_LIVE, USERNAME
 import requests
 
 
-def voice(from_phone: str, to_phone: str):
+def initiate_call(from_phone: str, to_phone: str):
     data = urlencode({
         "username": os.getenv('USERNAME'),
         "to": to_phone,

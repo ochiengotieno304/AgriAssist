@@ -4,6 +4,8 @@ from .airtime import send_airtime
 from .weather import weather, hourly, daily
 from .models import User
 from . import db
+from .voice import initiate_call
+from .settings import AT_PHONE_NUMBER
 
 
 main = Blueprint('main', __name__)
@@ -90,6 +92,7 @@ def ussd():
     elif text == '2':
         if find_user(phone_number):
             response = "CON Enter your preferred crop \n"
+            initiate_call(AT_PHONE_NUMBER, phone_number)
             # TODO send session booking sms
         else:
             response = "END Register for our service to get updates on\n"
@@ -100,6 +103,7 @@ def ussd():
     elif text == '3':
         if find_user(phone_number):
             response = "CON Enter preferred livestock \n"
+            initiate_call(AT_PHONE_NUMBER, phone_number)
             # TODO send session booking sms
         else:
             response = "END Invalid choice, please register"
@@ -131,11 +135,11 @@ def ussd():
             if find_user(phone_number):
                 if arr[0] == "2":
                     crop = arr[1]
-                    response = f"END {crop} "
+                    response = f"END We will call you for more details on your inquiry"
 
                 elif arr[0] == "3":
                     livestock = arr[1]
-                    response = f"END {livestock} "
+                    response = f"END We will call you for more details on your inquiry"
                 else:
                     response = "END Invalid choice 2"
 
