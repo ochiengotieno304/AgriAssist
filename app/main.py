@@ -46,13 +46,22 @@ def voice():
     session_id = request.values.get('sessionID', None)
     is_active = request.values.get('isActive', None)
     keypad_res = request.values.get('dtmfDigits', None)
+    recording_url = request.values.get('recordingUrl', None)
+    phone = request.values.get('callerNumber', None)
 
-    response = '<?xml version="1.0" encoding="UTF-8"?>'
-    response += '<Response>'
-    response += '<Record finishOnKey="#" maxLength ="10" trimSilence="true" playBeep="true" >'
-    response += '<Say>Hello, welcome to AgriAssist. Please describe you query followed by the hash sign after the tone.</Say>'
-    response += '</Record>'
-    response += '</Response>'
+    if find_user(phone):
+        response = '<?xml version="1.0" encoding="UTF-8"?>'
+        response += '<Response>'
+        response += '<Record finishOnKey="#" maxLength ="10" trimSilence="true" playBeep="true" >'
+        response += '<Say>Hello, welcome to AgriAssist. Please describe you query followed by the hash sign after the tone.</Say>'
+        response += '</Record>'
+        response += '</Response>'
+    else:
+        response = '<?xml version="1.0" encoding="UTF-8"?>'
+        response += '<Response>'
+        response += '<Say>Hello, welcome to AgriAssist. Please dial star 3 8 4 star 7 6 3 3 hash to register.</Say>'
+        response += '</Response>'
+
 
     return response
 
