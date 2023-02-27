@@ -49,8 +49,8 @@ def voice():
 
     response = '<?xml version="1.0" encoding="UTF-8"?>'
     response += '<Response>'
-    response += '<Record finishOnKey = "#" maxLength = "10" trimSilence = "true" playBeep = "true" >'
-    response += '<Say>Hello, welcome to AgriAssist. Please describe you query after the tone followed by the hash sign.</Say>'
+    response += '<Record finishOnKey="#" maxLength ="10" trimSilence="true" playBeep="true" >'
+    response += '<Say>Hello, welcome to AgriAssist. Please describe you query followed by the hash sign after the tone.</Say>'
     response += '</Record>'
     response += '</Response>'
 
