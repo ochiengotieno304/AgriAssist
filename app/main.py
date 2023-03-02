@@ -70,7 +70,7 @@ def ussd():
 
     if text == '':
         if find_user(phone_number):
-            response = f'CON Hello {user(phone_number)}, welcome ... \n'
+            response = f'CON Hello {user(phone_number)}, welcome to AgriAssist \n'
             response += "1. Weather information \n"
             response += "2. Crop information \n"
             response += f"3. Livestock information"
@@ -150,7 +150,7 @@ def ussd():
                     message = f'Dear {name} you have been successfully registered to our service. \n'
                     message += 'Receive info on crop yields, climate patterns, \n'
                     message += 'government grants, loans and other support services \n\n'
-                    message += 'For inquiries dial *384*7633# for more info'
+                    message += 'For inquiries dial  for more info'
                     try:
                         register_user(phone_number, name, location)
                     except Exception as e:

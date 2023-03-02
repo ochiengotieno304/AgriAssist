@@ -24,7 +24,7 @@ def voice(from_phone: str, to_phone: str):
         return False
 
     print(f"Call placed {res.text}")
-    return True
+    return res
 
 
 # voice("+254777888999", "+254777287562")
