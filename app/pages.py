@@ -62,6 +62,12 @@ def specialists():
     specialists= Specialist.query.all()
     return render_template('specialists.html',specialists=specialists)
 
+
+@page.route('/sessions')
+@login_required
+def sessions():
+    return render_template('sessions.html')
+
 @page.route('/weather')
 def weather():
     return render_template('weather.html')

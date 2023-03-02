@@ -9,7 +9,6 @@ from .settings import AT_PHONE_NUMBER
 from . import db
 
 
-
 main = Blueprint('main', __name__)
 
 
@@ -56,15 +55,14 @@ def voice():
         response = '<?xml version="1.0" encoding="UTF-8"?>'
         response += '<Response>'
         response += '<Record finishOnKey="#" maxLength ="10" trimSilence="true" playBeep="true" >'
-        response += '<Say>Hello, welcome to AgriAssist. Please describe you query followed by the hash sign after the tone.</Say>'
+        response += f"<Say>Hello {user(phone)}, welcome to AgriAssist. Please describe you query followed by the hash sign after the tone.</Say>"
         response += '</Record>'
         response += '</Response>'
     else:
         response = '<?xml version="1.0" encoding="UTF-8"?>'
         response += '<Response>'
-        response += '<Say>Hello, welcome to AgriAssist. Please dial star 3 8 4 star 7 6 3 3 hash to register.</Say>'
+        response += '<Say>Hello, welcome to AgriAssist. Please dial star three eighty four star 76 33 hash to register.</Say>'
         response += '</Response>'
-
 
     return response
 

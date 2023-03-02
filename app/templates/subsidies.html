@@ -24,6 +24,7 @@
                     <li><a href="{{ url_for('page.grants') }}">Grant</a></li>
                     <li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
                     <li><a href="{{ url_for('page.subsidies') }}" class="has-background-primary has-text-white">Subsidies</a></li>
+                    <li><a href="{{ url_for('page.sessions') }}">Sessions</a></li>
 
                 </ul>
 
@@ -59,7 +60,7 @@
                                     <tr>
                                         <td>Availability</td>
                                         <td>Category</td>
-                                        
+
                                     </tr>
                                     {% for subsidy in subsidies %}
                                     <tr>

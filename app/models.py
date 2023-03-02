@@ -18,7 +18,8 @@ class User(db.Model):
 
 class Session(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    timedate = db.Column(db.DateTime)
+    enqueue_on = db.Column(db.DateTime)
+    confirmed_for = db.Column(db.DateTime)
     specialist = db.Column(db.String(100))
     status= db.Column(db.String(100))
 
@@ -35,6 +36,7 @@ class Subsidy(db.Model):
 class Specialist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
+    email = db.Column(db.String(100))
     phone = db.Column(db.String(15), unique=True)
 
 
