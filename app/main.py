@@ -1,8 +1,11 @@
 from flask import Blueprint, request, render_template
+from flask_login import login_required
 from .sms import send_sms
 from .airtime import send_airtime
 from .weather import weather, hourly, daily
 from .models import User
+from .voice import initiate_call
+from .settings import AT_PHONE_NUMBER
 from . import db
 
 
@@ -35,6 +38,7 @@ def user_location(phone: str):
 
 
 @main.route('/')
+@login_required
 def index():
     return render_template('index.html')
 
@@ -43,17 +47,30 @@ def index():
 def voice():
     session_id = request.values.get('sessionID', None)
     is_active = request.values.get('isActive', None)
+    keypad_res = request.values.get('dtmfDigits', None)
+    recording_url = request.values.get('recordingUrl', None)
+    phone = request.values.get('callerNumber', None)
 
-    if is_active == 1:
+    if find_user(phone):
+        if recording_url != None:
+            response  = '<?xml version="1.0" encoding="UTF-8"?>';
+            response += '<Response>';
+            response += f"Thank you.your responce has been captured.</Say>"
+            response += '<Reject/>';
+            response += '</Response>';
+        else:
+
+            response = '<?xml version="1.0" encoding="UTF-8"?>'
+            response += '<Response>'
+            response += '<Record finishOnKey="#" maxLength ="10" trimSilence="true" playBeep="true" >'
+            response += f"<Say>Hello {user(phone)}, welcome to AgriAssist. Please describe you query followed by the hash sign after the tone.</Say>"
+            response += '</Record>'
+            response += '</Response>'
+    else:
         response = '<?xml version="1.0" encoding="UTF-8"?>'
         response += '<Response>'
-        response += '<Say>Please listen to our awesome record</Say>'
+        response += '<Say>Hello, welcome to AgriAssist. Please dial star three eighty four star 76 33 hash to register.</Say>'
         response += '</Response>'
-
-    else:
-        duration = request.values.get('durationInSeconds')
-        currency_code = request.values.get('currencyCode')
-        amount = request.values.get('amount')
 
     return response
 
@@ -93,6 +110,7 @@ def ussd():
     elif text == '2':
         if find_user(phone_number):
             response = "CON Enter your preferred crop \n"
+            initiate_call(AT_PHONE_NUMBER, phone_number)
             # TODO send session booking sms
         else:
             response = "END Register for our service to get updates on\n"
@@ -103,6 +121,7 @@ def ussd():
     elif text == '3':
         if find_user(phone_number):
             response = "CON Enter preferred livestock \n"
+            initiate_call(AT_PHONE_NUMBER, phone_number)
             # TODO send session booking sms
         else:
             response = "END Invalid choice, please register"
@@ -134,11 +153,11 @@ def ussd():
             if find_user(phone_number):
                 if arr[0] == "2":
                     crop = arr[1]
-                    response = f"END {crop} "
+                    response = f"END We will call you for more details on your inquiry"
 
                 elif arr[0] == "3":
                     livestock = arr[1]
-                    response = f"END {livestock} "
+                    response = f"END We will call you for more details on your inquiry"
                 else:
                     response = "END Invalid choice 2"
 

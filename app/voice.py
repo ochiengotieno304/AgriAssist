@@ -1,21 +1,20 @@
 import os
 from urllib.parse import urlencode
-# from .settings import API_KEY, USERNAME, URL, SHORT_CODE
+from .settings import API_KEY_LIVE, USERNAME
 import requests
 
 
-def voice(from_phone: str, to_phone: str):
+def initiate_call(from_phone: str, to_phone: str):
     data = urlencode({
         "username": os.getenv('USERNAME'),
         "to": to_phone,
-        "from": from_phone,
-        # "message": "hello"
+        "from": from_phone
     })
 
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/x-www-form-urlencoded",
-        "apiKey": os.getenv('API_KEY'),
+        "apiKey": os.getenv('API_KEY_LIVE'),
     }
 
     res = requests.post(os.getenv('CALL_URL'), data=data, headers=headers)
@@ -24,8 +23,5 @@ def voice(from_phone: str, to_phone: str):
         return False
 
     print(f"Call placed {res.text}")
-    return res
 
-
-# voice("+254777888999", "+254777287562")
-voice("+254777287562", "+254777888999")
+    return True
