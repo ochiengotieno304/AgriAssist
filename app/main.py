@@ -53,13 +53,12 @@ def voice():
 
     if find_user(phone):
         if recording_url != None:
-            response  = '<?xml version="1.0" encoding="UTF-8"?>';
-            response += '<Response>';
-            response += f"Thank you.your responce has been captured.</Say>"
-            response += '<Reject/>';
-            response += '</Response>';
+            response  = '<?xml version="1.0" encoding="UTF-8"?>'
+            response += '<Response>'
+            response += '<Say> Thankyou, your response has been captured.</Say>'
+            response += '<Reject/>'
+            response += '</Response>'
         else:
-
             response = '<?xml version="1.0" encoding="UTF-8"?>'
             response += '<Response>'
             response += '<Record finishOnKey="#" maxLength ="10" trimSilence="true" playBeep="true" >'
