@@ -1,12 +1,12 @@
 from urllib.parse import urlencode
-from .settings import API_KEY, USERNAME, URL, SHORT_CODE
+from .settings import API_KEY, URL, SHORT_CODE
 import requests
 
 
 def send_sms(phone: str, message: str):
 
     data = urlencode({
-        "username": USERNAME,
+        "username": 'sandbox',
         "to": phone,
         "message": message,
         "from": SHORT_CODE
