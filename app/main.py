@@ -6,6 +6,7 @@ from .weather import weather, hourly, daily
 from .models import User
 from .voice import initiate_call
 from .settings import AT_PHONE_NUMBER
+from .utils import new_session
 from . import db
 
 
@@ -47,7 +48,6 @@ def index():
 def voice():
     session_id = request.values.get('sessionID', None)
     is_active = request.values.get('isActive', None)
-    keypad_res = request.values.get('dtmfDigits', None)
     recording_url = request.values.get('recordingUrl', None)
     phone = request.values.get('callerNumber', None)
 
@@ -55,9 +55,10 @@ def voice():
         if recording_url != None:
             response  = '<?xml version="1.0" encoding="UTF-8"?>'
             response += '<Response>'
-            response += '<Say> Thankyou, your response has been captured.</Say>'
+            response += '<Say> Thankyou, your response has been captured. We will notify you when your session is confirmed</Say>'
             response += '<Reject/>'
             response += '</Response>'
+            new_session()
         else:
             response = '<?xml version="1.0" encoding="UTF-8"?>'
             response += '<Response>'

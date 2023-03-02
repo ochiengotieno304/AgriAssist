@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for
 from flask_login import login_required
 from .models import User,Grant,Specialist,Session,Subsidy
-from .utils import update_user
+from .utils import all_session
 
 from . import db
 
@@ -66,7 +66,8 @@ def specialists():
 @page.route('/sessions')
 @login_required
 def sessions():
-    return render_template('sessions.html')
+    sessions = all_session()
+    return render_template('sessions.html', sessions=sessions)
 
 @page.route('/weather')
 def weather():

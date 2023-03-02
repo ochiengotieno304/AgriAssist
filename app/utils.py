@@ -1,5 +1,6 @@
-from .models import User
+from .models import User, Session
 from . import db
+from datetime import datetime
 
 
 def all_users():
@@ -26,7 +27,18 @@ def register_user(phone: str, name: str, location: str):
     db.session.add(new_user)
     db.session.commit()
 
+
 def update_user(phone: str, name: str, location: str):
     updated_user = User(name=name, phone=phone, location=location)
     db.session.update(updated_user)
     db.session.commit()
+
+
+def new_session():
+    new_session = Session(enqueue_on=datetime.now(),
+                          confirmed_for=datetime.now(), specialist="", status=0)
+    db.session.add(new_session)
+    db.session.commit()
+
+def all_session():
+    return Session.query.all()

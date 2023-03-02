@@ -21,7 +21,7 @@ class Session(db.Model):
     enqueue_on = db.Column(db.DateTime)
     confirmed_for = db.Column(db.DateTime)
     specialist = db.Column(db.String(100))
-    status= db.Column(db.String(100))
+    status = db.Column(db.Integer)
 
 class Grant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
