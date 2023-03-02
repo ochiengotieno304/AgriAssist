@@ -1,11 +1,13 @@
 from flask import Blueprint, request, render_template
+from flask_login import login_required
 from .sms import send_sms
 from .airtime import send_airtime
 from .weather import weather, hourly, daily
 from .models import User
-from . import db
 from .voice import initiate_call
 from .settings import AT_PHONE_NUMBER
+from . import db
+
 
 
 main = Blueprint('main', __name__)
@@ -37,6 +39,7 @@ def user_location(phone: str):
 
 
 @main.route('/')
+@login_required
 def index():
     return render_template('index.html')
 
