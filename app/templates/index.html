@@ -19,7 +19,7 @@
 
     </aside>
   </div>
-  <div class="column is-9">
+  <div class="column is-6">
     <section class="hero is-primary welcome is-small">
       <div class="hero-body">
         <div class="container">
@@ -66,7 +66,46 @@
         </div>
       </div>
     </div>
+  </div>
 
+  <div class="column is-3">
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <aside class="menu is-hidden-mobile">
+            <p class="menu-label">
+              General
+            </p>
+            <div class="file is-centered is-boxed is-success has-name">
+              <label class="file-label">
+                <form action="{{ url_for('page.new_user') }}" method="POST">
+                  <div class="control">
+                    <label>Name</label>
+                    <input class="input" type="text" placeholder="John Doe" name="name">
+                  </div>
+                  <br />
+                  <div class="control">
+                    <label>Phone</label>
+                    <input class="input" type="text" placeholder="+254xxxxxxx" name="phone">
+                  </div>
+                  <br>
+                  <div class="control">
+                    <label>Location</label>
+                    <input class="input" type="text" placeholder="Nakuru" name="location">
+                  </div>
+                  <br />
+                  <div class="field is-grouped is-grouped-centered">
+                    <p class="control">
+                      <input type="submit" value="Add User" class="button is-primary is-link is-small">
+                    </p>
+                  </div>
+                </form>
+              </label>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

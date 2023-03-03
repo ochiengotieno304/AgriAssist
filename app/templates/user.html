@@ -1,164 +1,160 @@
+{% extends "base.html" %}
 
-    {% extends "base.html" %}
+{% block content %}
 
-    {% block content %}
-
-    <div class="columns">
-        <div class="column is-3">
-            <aside class="menu is-hidden-mobile">
-                <p class="menu-label">
-                    General
-                </p>
-                <ul class="menu-list">
-                    <li><a class="has-background-primary has-text-white">Home</a></li>
-                    <!-- <li><a href="{{ url_for('page.index') }}">Home</a></li>
+<div class="columns">
+    <div class="column is-3">
+        <aside class="menu is-hidden-mobile">
+            <p class="menu-label">
+                General
+            </p>
+            <ul class="menu-list">
+                <li><a class="has-background-primary has-text-white">Home</a></li>
+                <!-- <li><a href="{{ url_for('page.index') }}">Home</a></li>
                     <li><a href="{{ url_for('page.index') }}">Home</a></li> -->
-                </ul>
+            </ul>
 
-            </aside>
-        </div>
-        <div class="column is-6">
-            <section class="hero is-primary welcome is-small">
-                <div class="hero-body">
-                    <div class="">
-                        <h1 class="title">
-                            User Details
-                        </h1>
+        </aside>
+    </div>
+    <div class="column is-6">
+        <section class="hero is-primary welcome is-small">
+            <div class="hero-body">
+                <div class="">
+                    <h1 class="title">
+                        User Details
+                    </h1>
 
-                    </div>
-                </div>
-            </section>
-
-
-            <div class="is-3">
-                <div class="card events-card">
-                    <header class="card-header">
-
-                        <a href="#" class="card-header-icon" aria-label="more options">
-                            <span class="icon">
-                                <i class="fa fa-angle-down" aria-hidden="true"></i>
-                            </span>
-                        </a>
-                    </header>
-                    <div class="card-table">
-                        <div class="content">
-                            <table class="table is-fullwidth is-striped">
-                                <tbody>
-                                    <tr>
-                                        <td>Phone</td>
-                                        <td>Name</td>
-                                        <td>Action</td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>{{user.phone}}</td>
-                                        <td>{{user.name}}</td>
-                                        <td><a class="button is-link is-small" href="/delete/{{user.id}}">Delete</a>
-                                        </td>
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <br />
-            <section class="hero is-primary welcome is-small">
-                <div class="hero-body">
-                    <div class="container">
-                        <h1 class="title">
-                            Session
-                        </h1>
-
-                    </div>
-                </div>
-            </section>
+        </section>
 
 
-            <div class="is-3">
-                <div class="card events-card">
-                    <header class="card-header">
+        <div class="is-3">
+            <div class="card events-card">
+                <header class="card-header">
 
-                        <a href="#" class="card-header-icon" aria-label="more options">
-                            <span class="icon">
-                                <i class="fa fa-angle-down" aria-hidden="true"></i>
-                            </span>
-                        </a>
-                    </header>
-                    <div class="card-table">
-                        <div class="content">
-                            <table class="table is-fullwidth is-striped">
-                                <tbody>
-
-                                    <tr>
-                                        <td>TimeDate</td>
-                                        <td>Specialist</td>
-                                        <td>Status</td>
-                                        <td>Action</td>
-                                    </tr>
-                                    <tr>
-                                        <td>{{user.timedate}}</td>
-                                        <td>{{user.specialist}}</td>
-                                        <td>{{user.status}}</td>
-                                        <td><a class="button is-primary is-link is-small"
-                                                href="/delete/{{user.id}}">Delete</a></td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="column is-3">
-            <div class="card">
-                <div class="card-content">
+                    <a href="#" class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+                <div class="card-table">
                     <div class="content">
-                        <aside class="menu is-hidden-mobile">
-                            <p class="menu-label">
-                                General
-                            </p>
-                            <div class="file is-centered is-boxed is-success has-name">
-                                <label class="file-label">
-                                    <form action="{{ url_for('page.update_user', id=user.id) }}" method="POST">
-                                        <div class="control">
-                                            <label>Name</label>
-                                            <input class="input" type="text" placeholder="Name" value="{{user.name}}">
-                                        </div>
-                                        <br />
-                                        <div class="control">
-                                            <label>Phone</label>
-                                            <input class="input" type="text" placeholder="Phone" value="{{user.phone}}">
-                                        </div>
-                                        <br>
-                                        <div class="control">
-                                            <label>Location</label>
-                                            <input class="input" type="text" placeholder="Phone"
-                                                value="{{user.location}}">
-                                        </div>
-                                        <br />
-                                        <div class="field is-grouped is-grouped-centered">
-                                            <p class="control">
-                                                <a class="button is-primary is-link is-small"
-                                                    href="">Update</a>
-                                            </p>
-                                        </div>
-                                    </form>
-                                </label>
-                            </div>
+                        <table class="table is-fullwidth is-striped">
+                            <tbody>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td>Name</td>
+                                    <td>Action</td>
+                                </tr>
+                                <tr>
 
-                        </aside>
+                                    <td>{{user.phone}}</td>
+                                    <td>{{user.name}}</td>
+                                    <td><a class="button is-link is-small" href="/delete/{{user.id}}">Delete</a>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <section class="hero is-primary welcome is-small">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Session
+                    </h1>
+
+                </div>
+            </div>
+        </section>
+
+
+        <div class="is-3">
+            <div class="card events-card">
+                <header class="card-header">
+
+                    <a href="#" class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+                <div class="card-table">
+                    <div class="content">
+                        <table class="table is-fullwidth is-striped">
+                            <tbody>
+
+                                <tr>
+                                    <td>TimeDate</td>
+                                    <td>Specialist</td>
+                                    <td>Status</td>
+                                    <td>Action</td>
+                                </tr>
+                                <tr>
+                                    <td>{{user.timedate}}</td>
+                                    <td>{{user.specialist}}</td>
+                                    <td>{{user.status}}</td>
+                                    <td><a class="button is-primary is-link is-small"
+                                            href="/delete/{{user.id}}">Delete</a></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="column is-3">
+        <div class="card">
+            <div class="card-content">
+                <div class="content">
+                    <aside class="menu is-hidden-mobile">
+                        <p class="menu-label">
+                            General
+                        </p>
+                        <div class="file is-centered is-boxed is-success has-name">
+                            <label class="file-label">
+                                <form action="{{ url_for('page.update_user', id=user.id) }}" method="POST">
+                                    <div class="control">
+                                        <label>Name</label>
+                                        <input class="input" type="text" value="{{user.name}}" name="name">
+                                    </div>
+                                    <br />
+                                    <div class="control">
+                                        <label>Phone</label>
+                                        <input class="input" type="text" value="{{user.phone}}" name="phone">
+                                    </div>
+                                    <br>
+                                    <div class="control">
+                                        <label>Location</label>
+                                        <input class="input" type="text" value="{{user.location}}" name="location">
+                                    </div>
+                                    <br />
+                                    <div class="field is-grouped is-grouped-centered">
+                                        <p class="control">
+                                            <input type="submit" value="Update"
+                                                class="button is-primary is-link is-small">
+                                        </p>
+                                    </div>
+                                </form>
+                            </label>
+                        </div>
 
-    {% endblock %}
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
+{% endblock %}
