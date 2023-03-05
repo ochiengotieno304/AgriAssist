@@ -84,7 +84,9 @@ def specialists():
 @login_required
 def sessions():
     sessions = all_session()
-    return render_template('sessions.html', sessions=sessions)
+    pending = Session.query.filter(Session.status==0)
+    others = Session.query.filter(Session.status!=0)
+    return render_template('sessions.html', sessions=sessions, pending=pending, others=others)
 
 
 @page.route('/view-session/<id>')

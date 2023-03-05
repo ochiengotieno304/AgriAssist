@@ -47,17 +47,47 @@
             <table class="table is-fullwidth is-striped">
               <tbody>
                 <tr>
-                  <td>Enqueued Date</td>
+                  <td>Query</td>
                   <td>Status</td>
-                  <td></td>
-                  <td></td>
+                  <td colspan="2"></td>
                 </tr>
-                {% for session in sessions %}
+                {% for session in pending %}
                 <tr>
-                  <td>{{session.enqueue_on}}</td>
-                  <td>{{session.status}}</td>
+                  <td><audio controls preload="auto">
+                      <source src="http://197.248.0.197:8080/acbea5aed109c92f6b1e09e63f0473c8.mp3" type="audio/mpeg">
+                    </audio>
+                  </td>
+                  <td><span class="tag is-warning">Pending</span></td>
                   <td><a class="button is-success is-small" href="#">Confirm</a></td>
                   <td><a class="button is-danger is-small" href="#">Cancel</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card-table">
+          <div class="content">
+            <table class="table is-fullwidth is-striped">
+              <tbody>
+                <tr>
+                  <td colspan="4" class="subtitle is-primary">History</td>
+                </tr>
+                <tr>
+                  <td>Time Booked</td>
+                  <td>Confirmed for</td>
+                  <td>Status</td>
+                </tr>
+                {% for session in others %}
+                <tr>
+                  <td>{{session.enqueue_on.strftime("%a %b %d %X")}}</td>
+                  <td>{{session.confirmed_for.strftime("%a %b %d %X")}}</td>
+                  {% if session.status == 1 %}
+                  <td><span class="tag is-success">confirmed</span></td>
+                  {% else %}
+                  <td><span class="tag is-danger">Canceled</span></td>
+                  {% endif %}
                 </tr>
                 {% endfor %}
               </tbody>
@@ -91,10 +121,8 @@
                 <br />
                 <div class="field is-grouped is-grouped-centered">
                   <p class="control">
-                    <a class="button is-primary is-link is-small" href="#">Update</a>
-
+                    <a class="button is-primary is-link is-small" href="#">New Session</a>
                   </p>
-
                 </div>
               </label>
             </div>

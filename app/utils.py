@@ -36,7 +36,7 @@ def update_user(phone: str, name: str, location: str):
 
 def new_session():
     new_session = Session(enqueue_on=datetime.now(),
-                          confirmed_for=datetime.now(), specialist="", status=0)
+                          confirmed_for=datetime.now(), queryl="", status=0)
     db.session.add(new_session)
     db.session.commit()
 
