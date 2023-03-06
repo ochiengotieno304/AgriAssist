@@ -90,15 +90,17 @@
             <table class="table is-fullwidth is-striped">
               <tbody>
                 <tr>
-                  <td>Query</td>
-                  <td>Status</td>
+                  <td class="title is-6">Ticket</td>
+                  <td class="title is-6">Query</td>
+                  <td class="title is-6">Status</td>
                   <td></td>
                   <td colspan="2"></td>
                 </tr>
                 {% for session in pending %}
                 <tr>
+                  <td>{{ session.id }}</td>
                   <td><audio controls preload="auto">
-                      <source src="http://197.248.0.197:8080/acbea5aed109c92f6b1e09e63f0473c8.mp3" type="audio/mpeg">
+                      <source src="{{ session.queryl }}" type="audio/mpeg">
                     </audio>
                   </td>
                   <td><span class="tag is-warning is-rounded">Pending</span></td>
@@ -130,15 +132,17 @@
             <table class="table is-fullwidth is-striped">
               <tbody>
                 <tr>
-                  <td colspan="4" class="subtitle is-primary">History</td>
+                  <td colspan="4" class="title is-primary">History</td>
                 </tr>
                 <tr>
-                  <td>Time Booked</td>
-                  <td>Confirmed for</td>
-                  <td>Status</td>
+                  <td class="title is-6">Ticket</td>
+                  <td class="title is-6">Time Booked</td>
+                  <td class="title is-6">Confirmed for</td>
+                  <td class="title is-6">Status</td>
                 </tr>
                 {% for session in others %}
                 <tr>
+                  <td>{{ session.id }}</td>
                   <td>{{session.enqueue_on.strftime("%a %b %d %X")}}</td>
                   <td>{{session.confirmed_for.strftime("%a %b %d %X")}}</td>
                   {% if session.status == 1 %}
