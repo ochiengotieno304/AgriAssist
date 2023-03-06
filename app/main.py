@@ -58,7 +58,7 @@ def voice():
             response += '<Say> Thankyou, your response has been captured. We will notify you when your session is confirmed</Say>'
             response += '<Reject/>'
             response += '</Response>'
-            new_session()
+            new_session(recording_url)
         else:
             response = '<?xml version="1.0" encoding="UTF-8"?>'
             response += '<Response>'

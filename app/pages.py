@@ -1,7 +1,7 @@
-from flask import Blueprint, request, render_template, redirect, url_for
+from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_required
 from .models import User, Grant, Specialist, Session, Subsidy
-from .utils import all_session, register_user, all_users
+from .utils import all_session, register_user, all_users, register_specialist, all_specialists, cancel_session, confirm_session
 
 from . import db
 
@@ -73,10 +73,23 @@ def subsidies():
     return render_template('subsidies.html', subsidies=subsidies)
 
 
+@page.route('/new-specialist', methods=['POST'])
+@login_required
+def new_specialist():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    phone = request.form.get('phone')
+    try:
+        register_specialist(name, email, phone)
+        return redirect(url_for('page.specialists'))
+    except:
+        return redirect(url_for('page.index'))
+
+
 @page.route('/specialist')
 @login_required
 def specialists():
-    specialists = Specialist.query.all()
+    specialists = all_specialists()
     return render_template('specialists.html', specialists=specialists)
 
 
@@ -84,9 +97,34 @@ def specialists():
 @login_required
 def sessions():
     sessions = all_session()
-    pending = Session.query.filter(Session.status==0)
-    others = Session.query.filter(Session.status!=0)
-    return render_template('sessions.html', sessions=sessions, pending=pending, others=others)
+    pending = Session.query.filter(Session.status == 0)
+    others = Session.query.filter(Session.status != 0)
+    specialists = all_specialists()
+    return render_template('sessions.html', sessions=sessions, pending=pending, others=others, specialists=specialists)
+
+
+@page.route('/cancel-session/<id>')
+@login_required
+def cancel_sessions(id):
+    try:
+        cancel_session(id)
+        flash('Session cancelled successfully.')
+        return redirect(url_for('page.sessions'))
+    except:
+        flash('Error cancelling session.')
+        return redirect(url_for('page.sessions'))
+
+
+@page.route('/confirm-session/<id>')
+@login_required
+def confirm_sessions(id):
+    try:
+        confirm_session(id)
+        flash('Session confirmed successfully.')
+        return redirect(url_for('page.sessions'))
+    except:
+        flash('Error confirming session.')
+        return redirect(url_for('page.sessions'))
 
 
 @page.route('/view-session/<id>')

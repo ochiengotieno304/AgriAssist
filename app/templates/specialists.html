@@ -51,18 +51,16 @@
                                     <td>Name</td>
                                     <td>Phone</td>
                                     <td>Action</td>
-
                                 </tr>
+                                {% for specialist in specialists %}
                                 <tr>
-
-                                    <td>{{specialists.name}}</td>
-                                    <td>{{specialists.phone}}</td>
+                                    <td>{{specialist.name}}</td>
+                                    <td>{{specialist.phone}}</td>
                                     <td><a class="button is-link is-small"
-                                            href="/specialists/{{specialists.id}}">View</a></td>
+                                            href="/specialists/{{specialist.id}}">View</a></td>
                                     </td>
                                 </tr>
-
-
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -82,26 +80,36 @@
                         </p>
                         <div class="file is-centered is-boxed is-success has-name">
                             <label class="file-label">
-                                <div class="control">
-                                    <label>Name</label>
-                                    <input class="input" type="text" placeholder="Name">
-                                </div>
-                                <br />
-                                <div class="control">
-                                    <label>Phone</label>
-                                    <input class="input" type="text" placeholder="Phone">
-                                </div>
-                                <br />
-                                <div class="field is-grouped is-grouped-centered">
-                                    <p class="control">
-                                        <a class="button is-primary is-link is-small" href="#">Update</a>
-
-                                    </p>
-
-                                </div>
+                                <form action="{{ url_for('page.new_specialist') }}" method="POST">
+                                    <div class="control">
+                                        <label>Name</label>
+                                        <input class="input" name="name" type="text" placeholder="Name">
+                                    </div>
+                                    <br />
+                                    <div class="control">
+                                        <label>Phone</label>
+                                        <input class="input" name="phone" type="text" placeholder="Phone">
+                                    </div>
+                                    <br />
+                                    <div class="control">
+                                        <label>Email</label>
+                                        <input class="input" name="email" type="text" placeholder="Email">
+                                    </div>
+                                    <br />
+                                    <div class="control">
+                                        <label>Field</label>
+                                        <input class="input" name="field" type="text" placeholder="Field">
+                                    </div>
+                                    <br />
+                                    <div class="field is-grouped is-grouped-centered">
+                                        <p class="control">
+                                            <input type="submit" class="button is-primary is-link is-small"
+                                                value="Add Specialist">
+                                        </p>
+                                    </div>
+                                </form>
                             </label>
                         </div>
-
                     </aside>
                 </div>
             </div>

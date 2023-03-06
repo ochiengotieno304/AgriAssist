@@ -1,4 +1,4 @@
-from .models import User, Session
+from .models import User, Session, Specialist
 from . import db
 from datetime import datetime
 
@@ -34,11 +34,35 @@ def update_user(phone: str, name: str, location: str):
     db.session.commit()
 
 
-def new_session():
-    new_session = Session(enqueue_on=datetime.now(),
-                          confirmed_for=datetime.now(), queryl="", status=0)
+def register_specialist(name: str, email: str, phone: str):
+    new_specialist = Specialist(name=name, email=email, phone=phone)
+    db.session.add(new_specialist)
+    db.session.commit()
+
+
+def all_specialists():
+    return Specialist.query.all()
+
+
+def new_session(mp3_url):
+    new_session = Session(enqueue_on=datetime.now(), queryl=mp3_url, status=0)
     db.session.add(new_session)
     db.session.commit()
+
+
+def confirm_session(id):
+    session_to_confirm = Session.query.filter_by(id=id).first_or_404()
+    session_to_confirm.status = 1
+    session_to_confirm.confirmed_for = datetime.now()
+    db.session.commit()
+
+
+def cancel_session(id):
+    session_to_cancel = Session.query.filter_by(id=id).first_or_404()
+    session_to_cancel.status = 2
+    session_to_cancel.confirmed_for = datetime.now()
+    db.session.commit()
+
 
 def all_session():
     return Session.query.all()

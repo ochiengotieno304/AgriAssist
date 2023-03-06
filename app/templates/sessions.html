@@ -2,24 +2,67 @@
 
 {% block content %}
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="notification is-info is-light">
+  {{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+
 <div class="columns">
   <div class="column is-3">
-    <aside class="menu is-hidden-mobile">
-      <p class="menu-label">
-        General
-      </p>
-      <ul class="menu-list">
-        <li><a href="/">Home</a></li>
-        <li><a href="{{ url_for('page.grants') }}">Grant</a></li>
-        <li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
-        <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
-        <li><a href="{{ url_for('page.sessions') }}" class="has-background-primary has-text-white">Sessions</a></li>
+    <div class="card">
+      <aside class="menu is-hidden-mobile card-content">
+        <p class="menu-label">
+          General
+        </p>
+        <ul class="menu-list">
+          <li><a href="/">Home</a></li>
+          <li><a href="{{ url_for('page.grants') }}">Grant</a></li>
+          <li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
+          <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
+          <li><a href="{{ url_for('page.sessions') }}" class="has-background-primary has-text-white">Sessions</a></li>
 
-      </ul>
+        </ul>
 
-    </aside>
+      </aside>
+    </div>
+
+    <div class="card mt-6">
+      <div class="card-content">
+        <div class="content">
+          <aside class="menu is-hidden-mobile">
+            <p class="menu-label">
+              New Session
+            </p>
+            <div class="file is-centered is-boxed is-success has-name">
+              <label class="file-label">
+                <div class="control">
+                  <label>Availability</label>
+                  <input class="input" type="text" placeholder="Availability">
+                </div>
+                <br />
+                <div class="control">
+                  <label>Category</label>
+                  <input class="input" type="text" placeholder="Category">
+                </div>
+                <br />
+                <div class="field is-grouped is-grouped-centered">
+                  <p class="control">
+                    <a class="button is-primary is-link is-small" href="#">New Session</a>
+                  </p>
+                </div>
+              </label>
+            </div>
+
+          </aside>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="column is-6">
+
+  <div class="column is-9">
     <section class="hero is-primary welcome is-small">
       <div class="hero-body">
         <div class="">
@@ -49,6 +92,7 @@
                 <tr>
                   <td>Query</td>
                   <td>Status</td>
+                  <td></td>
                   <td colspan="2"></td>
                 </tr>
                 {% for session in pending %}
@@ -57,9 +101,23 @@
                       <source src="http://197.248.0.197:8080/acbea5aed109c92f6b1e09e63f0473c8.mp3" type="audio/mpeg">
                     </audio>
                   </td>
-                  <td><span class="tag is-warning">Pending</span></td>
-                  <td><a class="button is-success is-small" href="#">Confirm</a></td>
-                  <td><a class="button is-danger is-small" href="#">Cancel</a></td>
+                  <td><span class="tag is-warning is-rounded">Pending</span></td>
+                  <td>
+                    <div class="select is-small is-rounded">
+                      <select>
+                        <option>Assign Specialist</option>
+                        {% for specialist in specialists %}
+                        <option name="{{ specialist.name }}">{{ specialist.name }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </td>
+                  <td><a class="button is-success is-small"
+                      href="{{ url_for( 'page.confirm_sessions', id=session.id ) }}">Confirm</button>
+                  </td>
+                  <td><a class="button is-danger is-small"
+                      href="{{ url_for( 'page.cancel_sessions', id=session.id ) }}">Cancel</button>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -84,9 +142,9 @@
                   <td>{{session.enqueue_on.strftime("%a %b %d %X")}}</td>
                   <td>{{session.confirmed_for.strftime("%a %b %d %X")}}</td>
                   {% if session.status == 1 %}
-                  <td><span class="tag is-success">confirmed</span></td>
+                  <td><span class="tag is-success is-rounded">Confirmed</span></td>
                   {% else %}
-                  <td><span class="tag is-danger">Canceled</span></td>
+                  <td><span class="tag is-danger is-rounded">Canceled</span></td>
                   {% endif %}
                 </tr>
                 {% endfor %}
@@ -97,40 +155,6 @@
       </div>
     </div>
     <br />
-  </div>
-
-  <div class="column is-3">
-    <div class="card">
-      <div class="card-content">
-        <div class="content">
-          <aside class="menu is-hidden-mobile">
-            <p class="menu-label">
-              General
-            </p>
-            <div class="file is-centered is-boxed is-success has-name">
-              <label class="file-label">
-                <div class="control">
-                  <label>Availability</label>
-                  <input class="input" type="text" placeholder="Availability">
-                </div>
-                <br />
-                <div class="control">
-                  <label>Category</label>
-                  <input class="input" type="text" placeholder="Category">
-                </div>
-                <br />
-                <div class="field is-grouped is-grouped-centered">
-                  <p class="control">
-                    <a class="button is-primary is-link is-small" href="#">New Session</a>
-                  </p>
-                </div>
-              </label>
-            </div>
-
-          </aside>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
