@@ -20,7 +20,7 @@ class Session(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     enqueue_on = db.Column(db.DateTime)
     confirmed_for = db.Column(db.DateTime)
-    queryl = db.Column(db.String(100))
+    queryl = db.Column(db.String)
     status = db.Column(db.Integer)
 
 class Grant(db.Model):
