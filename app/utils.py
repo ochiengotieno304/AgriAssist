@@ -1,4 +1,4 @@
-from .models import User, Session, Specialist
+from .models import User, Session, Specialist, Grant
 from . import db
 from datetime import datetime
 
@@ -66,3 +66,9 @@ def cancel_session(id):
 
 def all_session():
     return Session.query.all()
+
+def new_grant(availability, category):
+    new_grant = Grant(availability=availability, category=category)
+    db.session.add(new_grant)
+    db.session.commit()
+

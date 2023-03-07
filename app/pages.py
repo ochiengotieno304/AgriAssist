@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_required
 from .models import User, Grant, Specialist, Session, Subsidy
-from .utils import all_session, register_user, all_users, register_specialist, all_specialists, cancel_session, confirm_session
+from .utils import all_session, register_user, all_users, register_specialist, all_specialists, cancel_session, confirm_session, new_grant
 
 from . import db
 
@@ -59,11 +59,22 @@ def update_user(id):
             return redirect(url_for('page.index'))
 
 
-@page.route('/grants')
+@page.route('/grants', methods=['GET', 'POST'])
 @login_required
 def grants():
     grants = Grant.query.all()
+    if request.method == 'POST':
+        new_grant_category = request.form.get('category')
+        new_grant_availability = request.form.get('availability')
+        try:
+            new_grant(new_grant_availability, new_grant_category)
+            flash('Grant added successfully')
+        except:
+            flash('Error adding grant')
+            return render_template('grants.html', grants=grants)
+
     return render_template('grants.html', grants=grants)
+
 
 
 @page.route('/subsidies')

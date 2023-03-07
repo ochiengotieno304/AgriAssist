@@ -2,6 +2,14 @@
 
 {% block content %}
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="notification is-info is-light">
+    {{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+
 <div class="columns">
     <div class="column is-3">
         <aside class="menu is-hidden-mobile">
@@ -10,7 +18,7 @@
             </p>
             <ul class="menu-list">
                 <li><a href="/">Home</a></li>
-                <li><a href="{{ url_for('page.grants') }}" class="has-background-primary has-text-white">Grant</a></li>
+                <li><a href="{{ url_for('page.grants') }}" class="has-background-primary has-text-white">Grants</a></li>
                 <li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
                 <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
                 <li><a href="{{ url_for('page.sessions') }}">Sessions</a></li>
@@ -49,14 +57,11 @@
                                 <tr>
                                     <td>Availability</td>
                                     <td>Category</td>
-
                                 </tr>
                                 {% for grant in grants %}
                                 <tr>
-
-                                    <td>{{grants.availability}}</td>
-                                    <td>{{grants.category}}</td>
-                                    </td>
+                                    <td>{{grant.availability}}</td>
+                                    <td>{{grant.category}}</td>
                                 </tr>
                                 {% endfor %}
 
@@ -79,27 +84,27 @@
                             General
                         </p>
                         <div class="file is-centered is-boxed is-success has-name">
-                            <label class="file-label">
-                                <div class="control">
-                                    <label>Availability</label>
-                                    <input class="input" type="text" placeholder="Availability">
-                                </div>
-                                <br />
-                                <div class="control">
-                                    <label>Category</label>
-                                    <input class="input" type="text" placeholder="Category">
-                                </div>
-                                <br />
-                                <div class="field is-grouped is-grouped-centered">
-                                    <p class="control">
-                                        <a class="button is-primary is-link is-small" href="#">Update</a>
-
-                                    </p>
-
-                                </div>
-                            </label>
+                            <form method="POST">
+                                <label class="file-label">
+                                    <div class="control">
+                                        <label>Availability</label>
+                                        <input class="input" type="text" placeholder="Availability" name="availability">
+                                    </div>
+                                    <br />
+                                    <div class="control">
+                                        <label>Category</label>
+                                        <input class="input" type="text" placeholder="Category" name="category">
+                                    </div>
+                                    <br />
+                                    <div class="field is-grouped is-grouped-centered">
+                                        <p class="control">
+                                            <input type="submit" value="Add Grant"
+                                                class="button is-primary is-link is-small">
+                                        </p>
+                                    </div>
+                                </label>
+                            </form>
                         </div>
-
                     </aside>
                 </div>
             </div>
