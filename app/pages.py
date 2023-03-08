@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_required
 from .models import User, Grant, Specialist, Session, Subsidy
-from .utils import all_session, register_user, all_users, register_specialist, all_specialists, cancel_session, confirm_session, new_grant
+from .utils import all_session, register_user, all_users, register_specialist, all_specialists, cancel_session, confirm_session, new_grant, new_subsidy
 
 from . import db
 
@@ -76,11 +76,20 @@ def grants():
     return render_template('grants.html', grants=grants)
 
 
-
-@page.route('/subsidies')
+@page.route('/subsidies', methods=['POST', 'GET'])
 @login_required
 def subsidies():
     subsidies = Subsidy.query.all()
+    if request.method == 'POST':
+        new_subsidy_category = request.form.get('category')
+        new_subsidy_availability = request.form.get('availability')
+        try:
+            new_subsidy(new_subsidy_availability, new_subsidy_category)
+            flash('Subsidy added successfully')
+        except:
+            flash('Error adding subsidy')
+            return render_template('subsidies.html', subsidies=subsidies)
+
     return render_template('subsidies.html', subsidies=subsidies)
 
 

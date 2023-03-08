@@ -1,4 +1,4 @@
-from .models import User, Session, Specialist, Grant
+from .models import User, Session, Specialist, Grant, Subsidy
 from . import db
 from datetime import datetime
 
@@ -67,8 +67,14 @@ def cancel_session(id):
 def all_session():
     return Session.query.all()
 
+
 def new_grant(availability, category):
     new_grant = Grant(availability=availability, category=category)
     db.session.add(new_grant)
     db.session.commit()
 
+
+def new_subsidy(availability, category):
+    new_subsidy = Subsidy(availability=availability, category=category)
+    db.session.add(new_subsidy)
+    db.session.commit()

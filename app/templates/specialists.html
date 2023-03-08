@@ -4,21 +4,23 @@
 
 <div class="columns">
     <div class="column is-3">
-        <aside class="menu is-hidden-mobile">
-            <p class="menu-label">
-                General
-            </p>
-            <ul class="menu-list">
-                <li><a href="/">Home</a></li>
-                <li><a href="{{ url_for('page.grants') }}">Grant</a></li>
-                <li><a href="{{ url_for('page.specialists') }}"
-                        class="has-background-primary has-text-white">Specialists</a></li>
-                <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
-                <li><a href="{{ url_for('page.sessions') }}">Sessions</a></li>
+        <div class="card">
+            <aside class="menu is-hidden-mobile card-content">
+                <p class="menu-label">
+                    General
+                </p>
+                <ul class="menu-list">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{{ url_for('page.grants') }}">Grant</a></li>
+                    <li><a href="{{ url_for('page.specialists') }}"
+                            class="has-background-primary has-text-white">Specialists</a></li>
+                    <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
+                    <li><a href="{{ url_for('page.sessions') }}">Sessions</a></li>
 
-            </ul>
+                </ul>
 
-        </aside>
+            </aside>
+        </div>
     </div>
     <div class="column is-6">
         <section class="hero is-primary welcome is-small">
