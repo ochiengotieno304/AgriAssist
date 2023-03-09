@@ -80,3 +80,13 @@ def new_subsidy(title, description, amount, application_deadline, contact):
                           application_deadline=application_deadline, contact=contact)
     db.session.add(new_subsidy)
     db.session.commit()
+
+def time_of_day():
+    time_now = datetime.now()
+
+    if time_now.strftime("%p") == "AM":
+        return "Good Morning"
+    elif int(time_now.strftime("%H")) <= 16:
+        return "Good Afternoon"
+    else:
+        return "Good Evening"

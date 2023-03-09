@@ -1,9 +1,11 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_required
 from datetime import datetime
+import asyncio
 from .models import User, Grant, Specialist, Session, Subsidy
 from .utils import all_session, register_user, all_users, register_specialist, all_specialists
-from .utils import confirm_session, new_grant, new_subsidy, cancel_session
+from .utils import confirm_session, new_grant, new_subsidy, cancel_session, time_of_day
+from .sms import send_sms, send_sms_to_all_users
 
 from . import db
 
@@ -77,11 +79,11 @@ def grants():
             new_grant(title, description, amount,
                       deadline, contact)
             flash('Grant added successfully')
+            message = f"{time_of_day()}! A new grant is available, kindly contact {contact} for more info before {deadline.strftime('%a %d, %b' )}"
+            asyncio.run(send_sms_to_all_users(message))
             return render_template('grants.html', grants=grants)
         except:
             flash('Error adding grant')
-            return render_template('grants.html', grants=grants)
-        finally:
             return render_template('grants.html', grants=grants)
 
     return render_template('grants.html', grants=grants)
@@ -103,11 +105,12 @@ def subsidies():
             new_subsidy(title, description, amount,
                         deadline, contact)
             flash('Subsidy added successfully')
+            message = f"{time_of_day()}! A new subsidy is available, kindly contact {contact} for more info before {deadline.strftime('%a %d, %b' )}"
+            asyncio.run(send_sms_to_all_users(message))
+            return render_template('grants.html', subsidies=subsidies)
         except:
             flash('Error adding subsidy')
-            return render_template('subsidies.html', subsidies=subsidies)
-        finally:
-            return render_template('grants.html', grants=grants)
+            return render_template('grants.html', subsidies=subsidies)
 
     return render_template('subsidies.html', subsidies=subsidies)
 
