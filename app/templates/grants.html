@@ -57,12 +57,13 @@
                             <tbody>
                                 <tr>
                                     <td>Title</td>
-                                    <td>Deadline</td>
+                                    <td colspan="2">Deadline</td>
                                 </tr>
                                 {% for grant in grants %}
                                 <tr>
                                     <td>{{grant.title}}</td>
-                                    <td>{{grant.application_deadline}}</td>
+                                    <td>{{grant.application_deadline.strftime('%a %d, %B %Y')}}</td>
+                                    <td><a class="button is-link is-small" href="{{ url_for('page.view_grant', id=grant.id) }}">View</a></td>
                                 </tr>
                                 {% endfor %}
 

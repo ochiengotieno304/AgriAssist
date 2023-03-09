@@ -59,12 +59,15 @@
                             <tbody>
                                 <tr>
                                     <td>Title</td>
-                                    <td>Deadline</td>
+                                    <td colspan="2">Deadline</td>
                                 </tr>
                                 {% for subsidy in subsidies %}
                                 <tr>
                                     <td>{{subsidy.title}}</td>
-                                    <td>{{subsidy.application_deadline}}</td>
+                                    <td>{{subsidy.application_deadline.strftime('%a %d, %B %Y')}}</td>
+                                    <td><a class="button is-link is-small"
+                                            href="{{ url_for('page.view_subsidy', id=subsidy.id) }}">View</a></td>
+
                                     </td>
                                 </tr>
                                 {% endfor %}

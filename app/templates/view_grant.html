@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="columns">
+  <div class="column is-3">
+    <div class="card">
+      <aside class="menu is-hidden-mobile card-content">
+        <p class="menu-label">
+          Grant Details
+        </p>
+        <ul class="menu-list">
+          <li><a class="has-background-primary has-text-white">Grant Details</a></li>
+          <li><a href="{{ url_for('page.index') }}">Home</a></li>
+        </ul>
+
+      </aside>
+    </div>
+  </div>
+  <div class="column">
+    <section class="hero is-primary welcome is-small">
+      <div class="hero-body">
+        <div class="">
+          <h1 class="title">
+            Grant Details
+          </h1>
+
+        </div>
+      </div>
+    </section>
+
+
+    <div class="is-3">
+      <div class="card events-card">
+        <header class="card-header">
+
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-table">
+          <div class="content">
+            <table class="table is-fullwidth is-striped">
+              <tbody>
+                <tr>
+                  <td>Title</td>
+                  <td>Description</td>
+                  <td>Deadline</td>
+                  <td colspan="2">Contact</td>
+                </tr>
+                <tr>
+
+                  <td>{{grant.title}}</td>
+                  <td>{{grant.description}}</td>
+                  <td>{{grant.application_deadline.strftime('%a %d, %B %Y')}}</td>
+                  <td>{{grant.contact}}</td>
+                  <td><a class="button is-link is-small"
+                      href="{{ url_for('page.delete_grant', id=grant.id) }}">Delete</a>
+                  </td>
+                </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

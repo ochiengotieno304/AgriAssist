@@ -89,6 +89,22 @@ def grants():
     return render_template('grants.html', grants=grants)
 
 
+@page.route('/grant/<id>', methods=['GET'])
+@login_required
+def view_grant(id):
+    grant = Grant.query.filter_by(id=id).first_or_404()
+    return render_template('view_grant.html', grant=grant)
+
+
+@page.route('/delete-grant/<id>')
+@login_required
+def delete_grant(id):
+    grant = Grant.query.filter_by(id=id).first_or_404()
+    db.session.delete(grant)
+    db.session.commit()
+    return redirect(url_for('page.grants'))
+
+
 @page.route('/subsidies', methods=['POST', 'GET'])
 @login_required
 def subsidies():
@@ -113,6 +129,22 @@ def subsidies():
             return render_template('grants.html', subsidies=subsidies)
 
     return render_template('subsidies.html', subsidies=subsidies)
+
+
+@page.route('/subsidy/<id>', methods=['GET'])
+@login_required
+def view_subsidy(id):
+    subsidy = Subsidy.query.filter_by(id=id).first_or_404()
+    return render_template('view_subsidy.html', subsidy=subsidy)
+
+
+@page.route('/delete-subsidy/<id>')
+@login_required
+def delete_subsidy(id):
+    subsidy = Subsidy.query.filter_by(id=id).first_or_404()
+    db.session.delete(subsidy)
+    db.session.commit()
+    return redirect(url_for('page.subsidies'))
 
 
 @page.route('/new-specialist', methods=['POST'])

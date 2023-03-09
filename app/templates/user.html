@@ -4,17 +4,18 @@
 
 <div class="columns">
     <div class="column is-3">
-        <aside class="menu is-hidden-mobile">
-            <p class="menu-label">
-                General
-            </p>
-            <ul class="menu-list">
-                <li><a class="has-background-primary has-text-white">Home</a></li>
-                <!-- <li><a href="{{ url_for('page.index') }}">Home</a></li>
-                    <li><a href="{{ url_for('page.index') }}">Home</a></li> -->
-            </ul>
+        <div class="card">
+            <aside class="menu is-hidden-mobile card-content">
+                <p class="menu-label">
+                    User Details
+                </p>
+                <ul class="menu-list">
+                    <li><a class="has-background-primary has-text-white">User Details</a></li>
+                    <li><a href="{{ url_for('page.index') }}">Home</a></li>
+                </ul>
 
-        </aside>
+            </aside>
+        </div>
     </div>
     <div class="column is-6">
         <section class="hero is-primary welcome is-small">
@@ -119,7 +120,7 @@
                 <div class="content">
                     <aside class="menu is-hidden-mobile">
                         <p class="menu-label">
-                            General
+                            Update User Details
                         </p>
                         <div class="file is-centered is-boxed is-success has-name">
                             <label class="file-label">
