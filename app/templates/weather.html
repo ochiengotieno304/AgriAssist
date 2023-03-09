@@ -3,52 +3,52 @@
 {% block content %}
 
 <div class="columns">
-    <div class="column is-3">
-        <aside class="menu is-hidden-mobile">
-            <img src="{{ url_for('static', filename='cloudy.png') }}" />
-        </aside>
-    </div>
-    <div class="column is-6">
-        <section class="hero is-primary welcome is-small">
-            <div class="hero-body">
-                <div class="">
-                    <h1 class="title">
-                        Monthly Forecast
-                    </h1>
+	<div class="column is-3">
+		<aside class="menu is-hidden-mobile">
+			<img src="{{ url_for('static', filename='cloudy.png') }}" />
+		</aside>
+	</div>
+	<div class="column is-6">
+		<section class="hero is-primary welcome is-small">
+			<div class="hero-body">
+				<div class="">
+					<h1 class="title">
+						Monthly Forecast
+					</h1>
 
-                </div>
-            </div>
-        </section>
+				</div>
+			</div>
+		</section>
 
 
-        <div class="is-3">
-            <div class="card events-card">
-                <header class="card-header">
+		<div class="is-3">
+			<div class="card events-card">
+				<header class="card-header">
 
-                    <a href="#" class="card-header-icon" aria-label="more options">
-                        <span class="icon">
-                            <i class="fa fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </header>
-                <div class="card-table">
-                    <div class="content">
-                        <tbody>
-                            <table>
-                                <tr>
-                                    <th>Time</th>
-                                    <th>Temp</th>
-                                    <th>Humidity</th>
-                                    <th>UV Index</th>
-                                </tr>   
-                            </table>
-                        </tbody>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-    </div>
+					<a href="#" class="card-header-icon" aria-label="more options">
+						<span class="icon">
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</span>
+					</a>
+				</header>
+				<div class="card-table">
+					<div class="content">
+						<tbody>
+							<table>
+								<tr>
+									<th>Time</th>
+									<th>Temp</th>
+									<th>Humidity</th>
+									<th>UV Index</th>
+								</tr>
+							</table>
+						</tbody>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+	</div>
 
 
 </div>

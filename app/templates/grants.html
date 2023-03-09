@@ -5,134 +5,133 @@
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 <div class="notification is-info is-light box message">
-    {{ messages[0] }}
+	{{ messages[0] }}
 </div>
 {% endif %}
 {% endwith %}
 
 <div class="columns">
-    <div class="column is-3">
-        <div class="card">
-            <aside class="menu is-hidden-mobile card-content">
-                <p class="menu-label">
-                    General
-                </p>
-                <ul class="menu-list">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="{{ url_for('page.grants') }}" class="has-background-primary has-text-white">Grants</a>
-                    </li>
-                    <li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
-                    <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
-                    <li><a href="{{ url_for('page.sessions') }}">Sessions</a></li>
-                </ul>
-            </aside>
-        </div>
-    </div>
-    <div class="column is-6">
-        <section class="hero is-primary welcome is-small">
-            <div class="hero-body">
-                <div class="">
-                    <h1 class="title">
-                        Grants
-                    </h1>
+	<div class="column is-3">
+		<div class="card">
+			<aside class="menu is-hidden-mobile card-content">
+				<p class="menu-label">
+					General
+				</p>
+				<ul class="menu-list">
+					<li><a href="/">Home</a></li>
+					<li><a href="{{ url_for('page.grants') }}" class="has-background-primary has-text-white">Grants</a>
+					</li>
+					<li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
+					<li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
+					<li><a href="{{ url_for('page.sessions') }}">Sessions</a></li>
+				</ul>
+			</aside>
+		</div>
+	</div>
+	<div class="column is-6">
+		<section class="hero is-primary welcome is-small">
+			<div class="hero-body">
+				<div class="">
+					<h1 class="title">
+						Grants
+					</h1>
 
-                </div>
-            </div>
-        </section>
-
-
-        <div class="is-3">
-            <div class="card events-card">
-                <header class="card-header">
-
-                    <a href="#" class="card-header-icon" aria-label="more options">
-                        <span class="icon">
-                            <i class="fa fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </header>
-                <div class="card-table">
-                    <div class="content">
-                        <table class="table is-fullwidth is-striped">
-                            <tbody>
-                                <tr>
-                                    <td>Title</td>
-                                    <td colspan="2">Deadline</td>
-                                </tr>
-                                {% for grant in grants %}
-                                <tr>
-                                    <td>{{grant.title}}</td>
-                                    <td>{{grant.application_deadline.strftime('%a %d, %B %Y')}}</td>
-                                    <td><a class="button is-link is-small" href="{{ url_for('page.view_grant', id=grant.id) }}">View</a></td>
-                                </tr>
-                                {% endfor %}
+				</div>
+			</div>
+		</section>
 
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-    </div>
+		<div class="is-3">
+			<div class="card events-card">
+				<header class="card-header">
 
-    <div class="column is-3">
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <aside class="menu is-hidden-mobile">
-                        <p class="menu-label">
-                            New Grant
-                        </p>
-                        <div class="file is-centered is-boxed is-success has-name">
-                            <form method="POST">
-                                <div class="field">
-                                    <div class="control">
-                                        <label>Title</label>
-                                        <input class="input" type="text" placeholder="Title" name="title">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <div class="control">
-                                        <label>Amount</label>
-                                        <input class="input" type="text" placeholder="Amount" name="amount">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <div class="control">
-                                        <label>Contact</label>
-                                        <input class="input" type="text" placeholder="Contact" name="contact">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <div class="control">
-                                        <label>Description</label>
-                                        <textarea class="textarea" placeholder="Grant description"
-                                            name="description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <div class="control">
-                                        <label>Application Deadline</label>
-                                        <input class="input" type="date" name="deadline">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <div class="field is-grouped is-grouped-centered">
-                                        <p class="control">
-                                            <input type="submit" value="Add Grant"
-                                                class="button is-primary is-link is-small">
-                                        </p>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </div>
-    </div>
+					<a href="#" class="card-header-icon" aria-label="more options">
+						<span class="icon">
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</span>
+					</a>
+				</header>
+				<div class="card-table">
+					<div class="content">
+						<table class="table is-fullwidth is-striped">
+							<tbody>
+								<tr>
+									<td>Title</td>
+									<td colspan="2">Deadline</td>
+								</tr>
+								{% for grant in grants %}
+								<tr>
+									<td>{{grant.title}}</td>
+									<td>{{grant.application_deadline.strftime('%a %d, %B %Y')}}</td>
+									<td><a class="button is-link is-small" href="{{ url_for('page.view_grant', id=grant.id) }}">View</a>
+									</td>
+								</tr>
+								{% endfor %}
+
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+	</div>
+
+	<div class="column is-3">
+		<div class="card">
+			<div class="card-content">
+				<div class="content">
+					<aside class="menu is-hidden-mobile">
+						<p class="menu-label">
+							New Grant
+						</p>
+						<div class="file is-centered is-boxed is-success has-name">
+							<form method="POST">
+								<div class="field">
+									<div class="control">
+										<label>Title</label>
+										<input class="input" type="text" placeholder="Title" name="title">
+									</div>
+								</div>
+								<div class="field">
+									<div class="control">
+										<label>Amount</label>
+										<input class="input" type="text" placeholder="Amount" name="amount">
+									</div>
+								</div>
+								<div class="field">
+									<div class="control">
+										<label>Contact</label>
+										<input class="input" type="text" placeholder="Contact" name="contact">
+									</div>
+								</div>
+								<div class="field">
+									<div class="control">
+										<label>Description</label>
+										<textarea class="textarea" placeholder="Grant description" name="description"></textarea>
+									</div>
+								</div>
+								<div class="field">
+									<div class="control">
+										<label>Application Deadline</label>
+										<input class="input" type="date" name="deadline">
+									</div>
+								</div>
+								<div class="field">
+									<div class="field is-grouped is-grouped-centered">
+										<p class="control">
+											<input type="submit" value="Add Grant" class="button is-primary is-link is-small">
+										</p>
+									</div>
+								</div>
+							</form>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 

@@ -3,120 +3,118 @@
 {% block content %}
 
 <div class="columns">
-    <div class="column is-3">
-        <div class="card">
-            <aside class="menu is-hidden-mobile card-content">
-                <p class="menu-label">
-                    General
-                </p>
-                <ul class="menu-list">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="{{ url_for('page.grants') }}">Grant</a></li>
-                    <li><a href="{{ url_for('page.specialists') }}"
-                            class="has-background-primary has-text-white">Specialists</a></li>
-                    <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
-                    <li><a href="{{ url_for('page.sessions') }}">Sessions</a></li>
+	<div class="column is-3">
+		<div class="card">
+			<aside class="menu is-hidden-mobile card-content">
+				<p class="menu-label">
+					General
+				</p>
+				<ul class="menu-list">
+					<li><a href="/">Home</a></li>
+					<li><a href="{{ url_for('page.grants') }}">Grant</a></li>
+					<li><a href="{{ url_for('page.specialists') }}" class="has-background-primary has-text-white">Specialists</a>
+					</li>
+					<li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
+					<li><a href="{{ url_for('page.sessions') }}">Sessions</a></li>
 
-                </ul>
+				</ul>
 
-            </aside>
-        </div>
-    </div>
-    <div class="column is-6">
-        <section class="hero is-primary welcome is-small">
-            <div class="hero-body">
-                <div class="">
-                    <h1 class="title">
-                        Specialists
-                    </h1>
+			</aside>
+		</div>
+	</div>
+	<div class="column is-6">
+		<section class="hero is-primary welcome is-small">
+			<div class="hero-body">
+				<div class="">
+					<h1 class="title">
+						Specialists
+					</h1>
 
-                </div>
-            </div>
-        </section>
+				</div>
+			</div>
+		</section>
 
 
-        <div class="is-3">
-            <div class="card events-card">
-                <header class="card-header">
+		<div class="is-3">
+			<div class="card events-card">
+				<header class="card-header">
 
-                    <a href="#" class="card-header-icon" aria-label="more options">
-                        <span class="icon">
-                            <i class="fa fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </header>
-                <div class="card-table">
-                    <div class="content">
-                        <table class="table is-fullwidth is-striped">
-                            <tbody>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Phone</td>
-                                    <td>Action</td>
-                                </tr>
-                                {% for specialist in specialists %}
-                                <tr>
-                                    <td>{{specialist.name}}</td>
-                                    <td>{{specialist.phone}}</td>
-                                    <td><a class="button is-link is-small"
-                                            href="/specialists/{{specialist.id}}">View</a></td>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-    </div>
+					<a href="#" class="card-header-icon" aria-label="more options">
+						<span class="icon">
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</span>
+					</a>
+				</header>
+				<div class="card-table">
+					<div class="content">
+						<table class="table is-fullwidth is-striped">
+							<tbody>
+								<tr>
+									<td>Name</td>
+									<td>Phone</td>
+									<td>Action</td>
+								</tr>
+								{% for specialist in specialists %}
+								<tr>
+									<td>{{specialist.name}}</td>
+									<td>{{specialist.phone}}</td>
+									<td><a class="button is-link is-small" href="/specialists/{{specialist.id}}">View</a></td>
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+	</div>
 
-    <div class="column is-3">
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <aside class="menu is-hidden-mobile">
-                        <p class="menu-label">
-                            General
-                        </p>
-                        <div class="file is-centered is-boxed is-success has-name">
-                            <label class="file-label">
-                                <form action="{{ url_for('page.new_specialist') }}" method="POST">
-                                    <div class="control">
-                                        <label>Name</label>
-                                        <input class="input" name="name" type="text" placeholder="Name">
-                                    </div>
-                                    <br />
-                                    <div class="control">
-                                        <label>Phone</label>
-                                        <input class="input" name="phone" type="text" placeholder="Phone">
-                                    </div>
-                                    <br />
-                                    <div class="control">
-                                        <label>Email</label>
-                                        <input class="input" name="email" type="text" placeholder="Email">
-                                    </div>
-                                    <br />
-                                    <div class="control">
-                                        <label>Field</label>
-                                        <input class="input" name="field" type="text" placeholder="Field">
-                                    </div>
-                                    <br />
-                                    <div class="field is-grouped is-grouped-centered">
-                                        <p class="control">
-                                            <input type="submit" class="button is-primary is-link is-small"
-                                                value="Add Specialist">
-                                        </p>
-                                    </div>
-                                </form>
-                            </label>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="column is-3">
+		<div class="card">
+			<div class="card-content">
+				<div class="content">
+					<aside class="menu is-hidden-mobile">
+						<p class="menu-label">
+							General
+						</p>
+						<div class="file is-centered is-boxed is-success has-name">
+							<label class="file-label">
+								<form action="{{ url_for('page.new_specialist') }}" method="POST">
+									<div class="control">
+										<label>Name</label>
+										<input class="input" name="name" type="text" placeholder="Name">
+									</div>
+									<br />
+									<div class="control">
+										<label>Phone</label>
+										<input class="input" name="phone" type="text" placeholder="Phone">
+									</div>
+									<br />
+									<div class="control">
+										<label>Email</label>
+										<input class="input" name="email" type="text" placeholder="Email">
+									</div>
+									<br />
+									<div class="control">
+										<label>Field</label>
+										<input class="input" name="field" type="text" placeholder="Field">
+									</div>
+									<br />
+									<div class="field is-grouped is-grouped-centered">
+										<p class="control">
+											<input type="submit" class="button is-primary is-link is-small" value="Add Specialist">
+										</p>
+									</div>
+								</form>
+							</label>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 
