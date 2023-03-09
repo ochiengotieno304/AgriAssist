@@ -4,7 +4,7 @@
 
 {% with messages = get_flashed_messages() %}
 {% if messages %}
-<div class="notification is-info is-light">
+<div class="notification is-info is-light box message">
     {{ messages[0] }}
 </div>
 {% endif %}
@@ -24,9 +24,7 @@
                     <li><a href="{{ url_for('page.specialists') }}">Specialists</a></li>
                     <li><a href="{{ url_for('page.subsidies') }}">Subsidies</a></li>
                     <li><a href="{{ url_for('page.sessions') }}">Sessions</a></li>
-
                 </ul>
-
             </aside>
         </div>
     </div>
@@ -58,13 +56,13 @@
                         <table class="table is-fullwidth is-striped">
                             <tbody>
                                 <tr>
-                                    <td>Availability</td>
-                                    <td>Category</td>
+                                    <td>Title</td>
+                                    <td>Deadline</td>
                                 </tr>
                                 {% for grant in grants %}
                                 <tr>
-                                    <td>{{grant.availability}}</td>
-                                    <td>{{grant.category}}</td>
+                                    <td>{{grant.title}}</td>
+                                    <td>{{grant.application_deadline}}</td>
                                 </tr>
                                 {% endfor %}
 
@@ -84,28 +82,49 @@
                 <div class="content">
                     <aside class="menu is-hidden-mobile">
                         <p class="menu-label">
-                            General
+                            New Grant
                         </p>
                         <div class="file is-centered is-boxed is-success has-name">
                             <form method="POST">
-                                <label class="file-label">
+                                <div class="field">
                                     <div class="control">
-                                        <label>Availability</label>
-                                        <input class="input" type="text" placeholder="Availability" name="availability">
+                                        <label>Title</label>
+                                        <input class="input" type="text" placeholder="Title" name="title">
                                     </div>
-                                    <br />
+                                </div>
+                                <div class="field">
                                     <div class="control">
-                                        <label>Category</label>
-                                        <input class="input" type="text" placeholder="Category" name="category">
+                                        <label>Amount</label>
+                                        <input class="input" type="text" placeholder="Amount" name="amount">
                                     </div>
-                                    <br />
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label>Contact</label>
+                                        <input class="input" type="text" placeholder="Contact" name="contact">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label>Description</label>
+                                        <textarea class="textarea" placeholder="Grant description"
+                                            name="description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <label>Application Deadline</label>
+                                        <input class="input" type="date" name="deadline">
+                                    </div>
+                                </div>
+                                <div class="field">
                                     <div class="field is-grouped is-grouped-centered">
                                         <p class="control">
                                             <input type="submit" value="Add Grant"
                                                 class="button is-primary is-link is-small">
                                         </p>
                                     </div>
-                                </label>
+                                </div>
                             </form>
                         </div>
                     </aside>

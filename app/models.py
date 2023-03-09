@@ -25,13 +25,20 @@ class Session(db.Model):
 
 class Grant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    availability = db.Column(db.String(100))
-    category = db.Column(db.String(100))
-
+    title = db.Column(db.String(100))
+    description = db.Column(db.String)
+    amount = db.Column(db.String)
+    application_deadline = db.Column(db.Date)
+    # eligibility = db.Column(db.String)
+    contact = db.Column(db.String)
 class Subsidy(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    availability = db.Column(db.String(100))
-    category = db.Column(db.String(100))
+    title = db.Column(db.String(100))
+    description = db.Column(db.String)
+    amount = db.Column(db.String)
+    application_deadline = db.Column(db.Date)
+    # eligibility = db.Column(db.String)
+    contact = db.Column(db.String)
 
 class Specialist(db.Model):
     id = db.Column(db.Integer, primary_key=True)

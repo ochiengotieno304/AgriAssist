@@ -68,13 +68,15 @@ def all_session():
     return Session.query.all()
 
 
-def new_grant(availability, category):
-    new_grant = Grant(availability=availability, category=category)
+def new_grant(title, description, amount, application_deadline, contact):
+    new_grant = Grant(title=title, description=description, amount=amount,
+                      application_deadline=application_deadline, contact=contact)
     db.session.add(new_grant)
     db.session.commit()
 
 
-def new_subsidy(availability, category):
-    new_subsidy = Subsidy(availability=availability, category=category)
+def new_subsidy(title, description, amount, application_deadline, contact):
+    new_subsidy = Subsidy(title=title, description=description, amount=amount,
+                          application_deadline=application_deadline, contact=contact)
     db.session.add(new_subsidy)
     db.session.commit()

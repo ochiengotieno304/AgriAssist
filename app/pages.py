@@ -1,7 +1,9 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_required
+from datetime import datetime
 from .models import User, Grant, Specialist, Session, Subsidy
-from .utils import all_session, register_user, all_users, register_specialist, all_specialists, cancel_session, confirm_session, new_grant, new_subsidy
+from .utils import all_session, register_user, all_users, register_specialist, all_specialists
+from .utils import confirm_session, new_grant, new_subsidy, cancel_session
 
 from . import db
 
@@ -64,13 +66,22 @@ def update_user(id):
 def grants():
     grants = Grant.query.all()
     if request.method == 'POST':
-        new_grant_category = request.form.get('category')
-        new_grant_availability = request.form.get('availability')
+        title = request.form.get('title')
+        description = request.form.get('description')
+        amount = request.form.get('amount')
+        application_deadline = request.form.get('deadline')
+        contact = request.form.get('contact')
+
+        deadline = datetime.strptime(application_deadline, '%Y-%m-%d').date()
         try:
-            new_grant(new_grant_availability, new_grant_category)
+            new_grant(title, description, amount,
+                      deadline, contact)
             flash('Grant added successfully')
+            return render_template('grants.html', grants=grants)
         except:
             flash('Error adding grant')
+            return render_template('grants.html', grants=grants)
+        finally:
             return render_template('grants.html', grants=grants)
 
     return render_template('grants.html', grants=grants)
@@ -81,14 +92,22 @@ def grants():
 def subsidies():
     subsidies = Subsidy.query.all()
     if request.method == 'POST':
-        new_subsidy_category = request.form.get('category')
-        new_subsidy_availability = request.form.get('availability')
+        title = request.form.get('title')
+        description = request.form.get('description')
+        amount = request.form.get('amount')
+        application_deadline = request.form.get('deadline')
+        contact = request.form.get('contact')
+
+        deadline = datetime.strptime(application_deadline, '%Y-%m-%d').date()
         try:
-            new_subsidy(new_subsidy_availability, new_subsidy_category)
+            new_subsidy(title, description, amount,
+                        deadline, contact)
             flash('Subsidy added successfully')
         except:
             flash('Error adding subsidy')
             return render_template('subsidies.html', subsidies=subsidies)
+        finally:
+            return render_template('grants.html', grants=grants)
 
     return render_template('subsidies.html', subsidies=subsidies)
 
