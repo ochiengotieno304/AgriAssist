@@ -58,7 +58,8 @@
 								<tr>
 									<td>{{specialist.name}}</td>
 									<td>{{specialist.phone}}</td>
-									<td><a class="button is-link is-small" href="/specialists/{{specialist.id}}">View</a></td>
+									<td><a class="button is-link is-small"
+											href="{{url_for('page.view_specialist', id=specialist.id)}}">View</a></td>
 									</td>
 								</tr>
 								{% endfor %}

@@ -167,6 +167,38 @@ def specialists():
     return render_template('specialists.html', specialists=specialists)
 
 
+@page.route('/specialist/<id>', methods=['POST', 'GET'])
+@login_required
+def view_specialist(id):
+    specialist = Specialist.query.filter_by(id=id).first_or_404()
+    return render_template('view_specialist.html', specialist=specialist)
+
+
+@page.route('/delete-specialist/<id>')
+@login_required
+def delete_specialist(id):
+    specialist = Specialist.query.filter_by(id=id).first_or_404()
+    db.session.delete(specialist)
+    db.session.commit()
+    return redirect(url_for('page.specialists'))
+
+
+@page.route('/update-specialist/<id>', methods=['POST'])
+@login_required
+def update_specialist(id):
+    specialist_to_update = User.query.filter_by(id=id).first_or_404()
+    if request.method == "POST":
+        specialist_to_update.name = request.form.get('name')
+        specialist_to_update.phone = request.form.get('phone')
+        specialist_to_update.email = request.form.get('email')
+        specialist_to_update.field = request.form.get('field')
+        try:
+            db.session.commit()
+            return redirect(url_for('page.view_specialist', id=specialist_to_update.id))
+        except:
+            return redirect(url_for('page.view_specialist'))
+
+
 @page.route('/sessions')
 @login_required
 def sessions():
