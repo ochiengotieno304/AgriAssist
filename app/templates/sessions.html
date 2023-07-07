@@ -99,8 +99,9 @@
                 {% for session in pending %}
                 <tr>
                   <td>{{ session.id }}</td>
+
                   <td><audio controls preload="auto">
-                      <source src="{{ session.queryl }}" type="audio/mpeg">
+                      <source src="data:audio/mpeg;base64,{{ proxy(session.queryl).decode() }}" type="audio/mpeg">
                     </audio>
                   </td>
                   <td><span class="tag is-warning is-rounded">Pending</span></td>
