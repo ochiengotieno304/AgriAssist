@@ -8,6 +8,7 @@ from .voice import initiate_call
 from .settings import AT_PHONE_NUMBER
 from .utils import new_session
 from . import db
+import asyncio
 
 
 main = Blueprint('main', __name__)
@@ -129,14 +130,14 @@ def ussd():
     elif text == '1*1':
         if find_user(phone_number):
             response = "END We've sent an sms with your request"
-            send_sms(phone_number, hourly(user_location(phone_number)))
+            asyncio.run(send_sms(phone_number, hourly(user_location(phone_number))))
         else:
             response = "END Please register"
 
     elif text == '1*2':
         if find_user(phone_number):
             response = "END We've sent an sms with your request"
-            send_sms(phone_number, daily(user_location(phone_number)))
+            asyncio.run(send_sms(phone_number, daily(user_location(phone_number))))
 
         else:
             response = "END Please register"
@@ -176,7 +177,7 @@ def ussd():
                         response = f"END Error, try again later \n " + str(e)
                     else:
                         response = f"END Dear {name} you have been successfully registered to our service"
-                        send_sms(phone_number, message)
+                        asyncio.run(send_sms(phone_number, message))
                         send_airtime(phone_number)
         else:
             response = "END Invalid Choice 3"

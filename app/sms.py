@@ -1,7 +1,5 @@
 from urllib.parse import urlencode
-from .settings import API_KEY, URL, SHORT_CODE
-import requests
-import aiohttp
+from .settings import API_KEY, URL, SHORT_CODE, USERNAME
 import httpx
 import asyncio
 from urllib.parse import urlencode
